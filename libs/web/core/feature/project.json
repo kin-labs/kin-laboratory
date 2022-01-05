@@ -1,0 +1,23 @@
+{
+  "root": "libs/web/core/feature",
+  "sourceRoot": "libs/web/core/feature/src",
+  "projectType": "library",
+  "tags": ["scope:web", "type:feature"],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/web/core/feature/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/web/core/feature"],
+      "options": {
+        "jestConfig": "libs/web/core/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

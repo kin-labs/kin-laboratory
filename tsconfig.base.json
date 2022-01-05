@@ -14,7 +14,26 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@kin-laboratory/web/core/data-access": [
+        "libs/web/core/data-access/src/index.ts"
+      ],
+      "@kin-laboratory/web/core/feature": [
+        "libs/web/core/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/home/feature": [
+        "libs/web/home/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/keypair/feature": [
+        "libs/web/keypair/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/shell/feature": [
+        "libs/web/shell/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/ui/footer": ["libs/web/ui/footer/src/index.ts"],
+      "@kin-laboratory/web/ui/header": ["libs/web/ui/header/src/index.ts"],
+      "@kin-laboratory/web/ui/layout": ["libs/web/ui/layout/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
