@@ -32,7 +32,8 @@
       ],
       "@kin-laboratory/web/ui/footer": ["libs/web/ui/footer/src/index.ts"],
       "@kin-laboratory/web/ui/header": ["libs/web/ui/header/src/index.ts"],
-      "@kin-laboratory/web/ui/layout": ["libs/web/ui/layout/src/index.ts"]
+      "@kin-laboratory/web/ui/layout": ["libs/web/ui/layout/src/index.ts"],
+      "@kin-laboratory/web/ui/page": ["libs/web/ui/page/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

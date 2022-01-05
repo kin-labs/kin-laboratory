@@ -1,6 +1,8 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@headlessui/react': ^1.4.2
+  '@heroicons/react': ^1.0.5
   '@nrwl/cli': 13.4.3
   '@nrwl/cypress': 13.4.3
   '@nrwl/eslint-plugin-nx': 13.4.3
@@ -45,6 +47,8 @@ specifiers:
   typescript: ~4.4.3
 
 dependencies:
+  '@headlessui/react': 1.4.2_react-dom@17.0.2+react@17.0.2
+  '@heroicons/react': 1.0.5_react@17.0.2
   autoprefixer: 10.4.1_postcss@8.4.5
   core-js: 3.20.2
   postcss: 8.4.5
@@ -1597,6 +1601,25 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@headlessui/react/1.4.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-N8tv7kLhg9qGKBkVdtg572BvKvWhmiudmeEpOCyNwzOsZHCXBtl8AazGikIfUS+vBoub20Fse3BjawXDVPPdug==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@heroicons/react/1.0.5_react@17.0.2:
+    resolution: {integrity: sha512-UDMyLM2KavIu2vlWfMspapw9yii7aoLwzI2Hudx4fyoPwfKfxU8r3cL8dEBXOjcLG0/oOONZzbT14M1HoNtEcg==}
+    peerDependencies:
+      react: '>= 16'
+    dependencies:
+      react: 17.0.2
+    dev: false
 
   /@humanwhocodes/config-array/0.6.0:
     resolution: {integrity: sha512-JQlEKbcgEUjBFhLIF4iqM7u/9lwgHRBcpHrmUNCALK0Q3amXN6lxdoXLnF0sm11E9VqTmBALR87IlUg1bZ8A9A==}

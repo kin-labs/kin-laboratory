@@ -6,11 +6,11 @@ export interface WebUiLayoutProps {}
 
 export function WebUiLayout(props: PropsWithChildren<WebUiLayoutProps>) {
   return (
-    <>
+    <div className="h-screen flex flex-col justify-between">
       <WebUiHeader />
-      <main>{props.children}</main>
+      <main className="flex-grow">{props.children}</main>
       <WebUiFooter />
-    </>
+    </div>
   );
 }
 

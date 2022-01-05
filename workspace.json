@@ -10,6 +10,7 @@
     "web-shell-feature": "libs/web/shell/feature",
     "web-ui-footer": "libs/web/ui/footer",
     "web-ui-header": "libs/web/ui/header",
-    "web-ui-layout": "libs/web/ui/layout"
+    "web-ui-layout": "libs/web/ui/layout",
+    "web-ui-page": "libs/web/ui/page"
   }
 }

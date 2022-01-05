@@ -1,10 +1,12 @@
+import { WebUiPage } from '@kin-laboratory/web/ui/page';
+
 export interface WebKeypairFeatureProps {}
 
 export function WebKeypairFeature(props: WebKeypairFeatureProps) {
   return (
-    <div>
+    <WebUiPage>
       <h1>WebKeypairFeature!</h1>
-    </div>
+    </WebUiPage>
   );
 }
 
