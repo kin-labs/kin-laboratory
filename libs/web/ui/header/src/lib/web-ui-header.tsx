@@ -1,9 +1,9 @@
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Home', href: '/', current: true },
+  { name: 'Home', href: '/home', current: true },
   { name: 'Keypair', href: '/keypair', current: false },
 ];
 
@@ -50,34 +50,31 @@ export function WebUiHeader(props: WebUiHeaderProps) {
                 </div>
                 <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                   {navigation.map((item) => (
-                    <Link
+                    <NavLink
                       key={item.name}
                       to={item.href}
-                      className={classNames(
-                        item.current
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                        'px-3 py-2 rounded-md text-sm font-medium'
-                      )}
-                      aria-current={item.current ? 'page' : undefined}
+                      activeClassName="bg-gray-900 text-white"
+                      className={
+                        'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
+                      }
                     >
                       {item.name}
-                    </Link>
+                    </NavLink>
                   ))}
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="flex-shrink-0 flex space-x-2">
-                  {networks.map((network) => (
-                    <button
-                      key={network}
-                      type="button"
-                      className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500"
-                    >
-                      <span>{network}</span>
-                    </button>
-                  ))}
-                </div>
+                {/*<div className="flex-shrink-0 flex space-x-2">*/}
+                {/*  {networks.map((network) => (*/}
+                {/*    <button*/}
+                {/*      key={network}*/}
+                {/*      type="button"*/}
+                {/*      className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500"*/}
+                {/*    >*/}
+                {/*      <span>{network}</span>*/}
+                {/*    </button>*/}
+                {/*  ))}*/}
+                {/*</div>*/}
               </div>
             </div>
           </div>
