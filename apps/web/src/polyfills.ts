@@ -5,3 +5,6 @@
  */
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+
+(window as any).global = window;
+global.Buffer = global.Buffer || require('buffer').Buffer;
