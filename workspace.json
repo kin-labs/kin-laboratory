@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "web": "apps/web",
+    "web-airdrop-feature": "libs/web/airdrop/feature",
     "web-core-data-access": "libs/web/core/data-access",
     "web-core-feature": "libs/web/core/feature",
     "web-e2e": "apps/web-e2e",

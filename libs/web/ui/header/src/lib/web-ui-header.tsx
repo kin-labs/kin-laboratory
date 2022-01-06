@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 const navigation = [
   { name: 'Home', href: '/home', current: true },
   { name: 'Keypair', href: '/keypair', current: false },
+  { name: 'Airdrop', href: '/airdrop', current: false },
 ];
 
 function classNames(...classes: any) {

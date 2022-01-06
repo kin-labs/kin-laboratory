@@ -1,3 +1,4 @@
+import { WebAirdropFeature } from '@kin-laboratory/web/airdrop/feature';
 import { WebHomeFeature } from '@kin-laboratory/web/home/feature';
 import { WebKeypairFeature } from '@kin-laboratory/web/keypair/feature';
 import { WebUiLayout } from '@kin-laboratory/web/ui/layout';
@@ -9,6 +10,7 @@ export function WebShellFeature() {
       <Route exact path="/">
         <Redirect to="/home" />
       </Route>
+      <Route path="/airdrop" exact component={WebAirdropFeature} />
       <Route path="/home" exact component={WebHomeFeature} />
       <Route path="/keypair" exact component={WebKeypairFeature} />
     </WebUiLayout>
