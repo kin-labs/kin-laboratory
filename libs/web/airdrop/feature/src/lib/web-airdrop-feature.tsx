@@ -3,7 +3,7 @@ import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
 import {
   KinClient,
-  KinEnvironment,
+  // KinEnvironment,
   KinTest,
   SimpleKeypair,
 } from '@kin-sdk/client';
@@ -13,18 +13,6 @@ import { useState, useEffect } from 'react';
 export interface WebAirdropFeatureProps {}
 
 const kin = new KinClient(KinTest);
-
-export function getExplorerUrl(env: KinEnvironment, publicKey: string): string {
-  const baseUrl = `https://explorer.solana.com/address/${publicKey}`;
-  const validator = `https://local.validator.agorainfra.dev`;
-  const params =
-    env === KinEnvironment.Test ? `?cluster=custom&customUrl=${validator}` : '';
-
-  const finalUrl = `${baseUrl}/tokens${params}`;
-  console.log('🚀 ~ finalUrl', finalUrl);
-
-  return finalUrl;
-}
 
 export function WebAirdropFeature(props: WebAirdropFeatureProps) {
   const [amount, setAmount] = useState<string>('50000');
@@ -76,7 +64,6 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
     setBalanceNull(false);
     try {
       const [res, err] = await kin.getBalances(publicKey!);
-      console.log('🚀 ~ res', res);
 
       if (res === null) setBalanceNull(true);
 
@@ -85,6 +72,17 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
       console.error(`An error occurred`, error);
     }
   }
+
+  // export function getExplorerUrl(env: KinEnvironment, publicKey: string): string {
+  //   const baseUrl = `https://explorer.solana.com/address/${publicKey}`;
+  //   const validator = `https://local.validator.agorainfra.dev`;
+  //   const params =
+  //     env === KinEnvironment.Test ? `?cluster=custom&customUrl=${validator}` : '';
+
+  //   const finalUrl = `${baseUrl}/tokens${params}`;
+
+  //   return finalUrl;
+  // }
 
   // function openExplorer() {
   //   window.open(getExplorerUrl(KinEnvironment.Test, publicKey!), '_blank');
