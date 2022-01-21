@@ -39,7 +39,7 @@ export function WebHomeFeature(props: WebHomeFeatureProps) {
             target="_blank"
             rel="noreferrer"
           >
-            kin-labs-requests
+            kin-laboratory
           </a>{' '}
           channel.
         </p>
