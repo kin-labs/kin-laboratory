@@ -27,7 +27,7 @@ export function WebHomeFeature(props: WebHomeFeatureProps) {
         <p>
           To request additional features, visit our{' '}
           <a
-            href="https://discord.com/channels/808859554997469244/"
+            href="https://discord.gg/kdRyUNmHDn"
             target="_blank"
             rel="noreferrer"
           >
@@ -35,7 +35,7 @@ export function WebHomeFeature(props: WebHomeFeatureProps) {
           </a>{' '}
           and put a request in the{' '}
           <a
-            href="https://discord.com/channels/808859554997469244/866647819913396224"
+            href="https://discord.com/channels/808859554997469244/934134681237073980"
             target="_blank"
             rel="noreferrer"
           >
