@@ -3,7 +3,7 @@ import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
 import {
   KinClient,
-  // KinEnvironment,
+  KinEnvironment,
   KinTest,
   SimpleKeypair,
 } from '@kin-sdk/client';
@@ -73,20 +73,20 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
     }
   }
 
-  // export function getExplorerUrl(env: KinEnvironment, publicKey: string): string {
-  //   const baseUrl = `https://explorer.solana.com/address/${publicKey}`;
-  //   const validator = `https://local.validator.agorainfra.dev`;
-  //   const params =
-  //     env === KinEnvironment.Test ? `?cluster=custom&customUrl=${validator}` : '';
+   function getExplorerUrl(env: KinEnvironment, publicKey: string): string {
+    const baseUrl = `https://explorer.solana.com/address/${publicKey}`;
+    const validator = `https://local.validator.agorainfra.dev`;
+    const params =
+      env === KinEnvironment.Test ? `?cluster=custom&customUrl=${validator}` : '';
 
-  //   const finalUrl = `${baseUrl}/tokens${params}`;
+    const finalUrl = `${baseUrl}/tokens${params}`;
 
-  //   return finalUrl;
-  // }
+    return finalUrl;
+  }
 
-  // function openExplorer() {
-  //   window.open(getExplorerUrl(KinEnvironment.Test, publicKey!), '_blank');
-  // }
+  function openExplorer() {
+    window.open(getExplorerUrl(KinEnvironment.Test, publicKey!), '_blank');
+  }
 
   return (
     <WebUiPage>
@@ -135,7 +135,7 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
             <div className="mt-1">
               <input
                 value={amount}
-                onChange={(e) => setAmount(e.target?.value?.toString)}
+                onChange={(e) => setAmount(e.target?.value?.toString())}
                 type="number"
                 min={1}
                 max={50000}
@@ -160,11 +160,11 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
             />
 
             {/* TODO turn this back on when we've moved to Solana Dev net or link works to custom url */}
-            {/* <WebUiButton
+            <WebUiButton
               disabled={!publicKey}
               onClick={openExplorer}
-              label="Open Explorer"
-            /> */}
+              label="See Account in Explorer"
+            />
           </div>
           <div className="">
             {balanceNull === true
