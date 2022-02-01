@@ -20,7 +20,7 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
   const [balanceNull, setBalanceNull] = useState(false);
   const [publicKey, setPublicKey] = useState<string>();
   const [dropping, setDropping] = useState<boolean>(false);
-
+  const [error, setError] = useState<string>('');
   const [sessionStorageKeypairs, setSessionStorageKeypairs] = useState<
     SimpleKeypair[] | null
   >(null);
@@ -31,13 +31,16 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
     if (kps.length) {
       setSessionStorageKeypairs(JSON.parse(kps));
     }
-  }, [dropping]);
+  }, []);
 
   async function airdrop() {
     if (publicKey) {
       setDropping(true);
+      setError('')
+
       try {
         const [_, err] = await kin.requestAirdrop(publicKey, amount);
+        console.log("🚀 ~ err", err)
 
         if (err === 'NOT_FOUND') {
           const keyPair =
@@ -49,6 +52,8 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
           if (keyPair && keyPair.secret) {
             await kin.createAccount(keyPair.secret);
             await airdrop();
+          } else {
+            setError("Sorry, we couldn't find your keypair. Try again using a keypair generated on the 'Keypair' tab.")
           }
         }
 
@@ -167,7 +172,10 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
             />
           </div>
           <div className="">
-            {balanceNull === true
+            {balanceNull === true && error
+              ? error
+              : null}
+            {balanceNull === true && !error
               ? `Can't find account. Sending an Airdrop will create your account if it doesn't already exist.`
               : null}
             {!balanceNull && balances ? (
