@@ -1,13 +1,33 @@
+import { useState, useEffect } from 'react';
+import { Keypair, SimpleKeypair } from '@kin-sdk/client';
+
+import { AirdropCard } from '@kin-laboratory/web/airdrop/feature';
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
-import { Keypair, SimpleKeypair } from '@kin-sdk/client';
-import { useState, useEffect } from 'react';
+
 
 export interface WebKeypairFeatureProps {}
 
+export function KeyPair({ kp }: { kp: SimpleKeypair }) {
+  return (
+    <div>
+      <div className="text-md leading-6 font-medium text-gray-700">Private Key : {kp.secret}</div>
+      <div className="text-md leading-6 font-medium text-gray-700">Public Key : {kp.publicKey}</div>
+      <div className="bg-white  pt-5 pb-3   ">
+      <h3 className="text-md leading-6 font-medium text-gray-700">Test Net Actions:</h3>
+    </div>
+      <AirdropCard
+        sessionStorageKeypairs={[kp]}
+        fixedPublicKey={kp.publicKey}
+      />
+
+    </div>
+  );
+}
+
 export function WebKeypairFeature(props: WebKeypairFeatureProps) {
-  const [keyPair, setKeyPair] = useState<SimpleKeypair>();
+  const [keyPair, setKeyPair] = useState<SimpleKeypair | null>();
 
   function addToSessionStorage(kp: SimpleKeypair) {
     const kpsString = sessionStorage.getItem('keyPairs') || '';
@@ -19,6 +39,7 @@ export function WebKeypairFeature(props: WebKeypairFeatureProps) {
   }
 
   function generate() {
+    setKeyPair(null)
     const kp = Keypair.randomKeys();
     addToSessionStorage(kp);
     setKeyPair(kp);
@@ -34,13 +55,6 @@ export function WebKeypairFeature(props: WebKeypairFeatureProps) {
       setSessionStorageKeypairs(JSON.parse(kps));
     }
   }, [keyPair]);
-
-  const showKeyPair = (kp: SimpleKeypair) => (
-    <div>
-      <div>Private Key : {kp.secret}</div>
-      <div>Public Key : {kp.publicKey}</div>
-    </div>
-  );
 
   return (
     <WebUiPage>
@@ -59,25 +73,34 @@ export function WebKeypairFeature(props: WebKeypairFeatureProps) {
       </div>
 
       <br />
+
+
+      {sessionStorageKeypairs?.length ? sessionStorageKeypairs.map((kp, index) => {
+          return (<div key={kp.publicKey}>
+          {index > 0 ? <br /> : null}
+            <WebUiCard>
+          <div className="flex flex-col space-y-6" key={kp.publicKey}>
+            {index === 0  ? (<div>
+            <WebUiButton onClick={generate} label="Generate" />
+          </div>): null}
+              <KeyPair kp={kp} />
+          </div>
+            </WebUiCard>
+          </div>
+        );
+
+
+
+      }) :(
       <WebUiCard>
-        <div className="flex flex-col space-y-6">
-          <div>
+          <div className="flex flex-col space-y-6" >
+            <div>
             <WebUiButton onClick={generate} label="Generate" />
           </div>
-          {sessionStorageKeypairs && sessionStorageKeypairs[0]
-            ? showKeyPair(sessionStorageKeypairs[0])
-            : undefined}
-        </div>
-      </WebUiCard>
+          </div>
 
-      {sessionStorageKeypairs?.slice(1).map((kp) => {
-        return (
-          <>
-            <br />
-            <WebUiCard>{showKeyPair(kp)}</WebUiCard>
-          </>
-        );
-      })}
+            </WebUiCard>
+      ) }
     </WebUiPage>
   );
 }
