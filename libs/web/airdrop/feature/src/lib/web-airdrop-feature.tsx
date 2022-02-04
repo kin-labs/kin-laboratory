@@ -24,8 +24,8 @@ export function AirdropCard({
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    setBalances([])
-  }, [fixedPublicKey])
+    setBalances([]);
+  }, [fixedPublicKey]);
 
   const airdropButton = (
     <WebUiButton
@@ -50,17 +50,20 @@ export function AirdropCard({
     <WebUiButton
       disabled={!publicKey || dropping}
       onClick={() =>
-        publicKey && createAccount({ publicKey,
+        publicKey &&
+        createAccount({
+          publicKey,
           setDropping,
           setError,
           amount,
           sessionStorageKeypairs,
           setBalances,
-          setBalanceNull,})
+          setBalanceNull,
+        })
       }
       label="Create Account"
     />
-  )
+  );
 
   const balancesButton = (
     <WebUiButton
@@ -80,74 +83,80 @@ export function AirdropCard({
     />
   );
 
-
-
   return (
-      <div className="flex flex-col space-y-4">
-        {!fixedPublicKey ? (
-          <div>
-            <label
-              htmlFor="publicKey"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Public Key
-            </label>
-            <div className="mt-1">
-              <input
-                value={publicKey}
-                onChange={(e) => setPublicKey(e.target?.value)}
-                type="text"
-                name="publicKey"
-                id="publicKey"
-                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                placeholder="e.g. Don8L4DTVrUrRAcVTsFoCRqei5Mokde3CV3K9Ut4nAGZ"
-              />
-            </div>
+    <div className="flex flex-col space-y-4">
+      {!fixedPublicKey ? (
+        <div>
+          <label
+            htmlFor="publicKey"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Public Key
+          </label>
+          <div className="mt-1">
+            <input
+              value={publicKey}
+              onChange={(e) => setPublicKey(e.target?.value)}
+              type="text"
+              name="publicKey"
+              id="publicKey"
+              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              placeholder="e.g. Don8L4DTVrUrRAcVTsFoCRqei5Mokde3CV3K9Ut4nAGZ"
+            />
           </div>
-        ) : null}
+        </div>
+      ) : null}
 
-        {!fixedPublicKey ? null : (<div className="flex space-x-2">
+      {!fixedPublicKey ? null : (
+        <div className="flex space-x-2">
           {createAccountButton}
           {airdropButton}
           {balancesButton}
           {seeAccountButton}
-        </div>)}
-
-        <div>
-          <label
-            htmlFor="amount"
-            className="block text-sm font-medium text-gray-700"
-          >
-            {fixedPublicKey ? 'Airdrop amount' : 'Amount'}
-          </label>
-          <div className="mt-1">
-            <input
-              value={amount}
-              onChange={(e) => setAmount(e.target?.value?.toString())}
-              type="number"
-              min={1}
-              max={50000}
-              name="amount"
-              id="amount"
-              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              placeholder="50000"
-            />
-          </div>
         </div>
+      )}
 
-        {fixedPublicKey ? null : (<div className="flex space-x-2">
+      <div>
+        <label
+          htmlFor="amount"
+          className="block text-sm font-medium text-gray-700"
+        >
+          {fixedPublicKey ? 'Airdrop amount' : 'Amount'}
+        </label>
+        <div className="mt-1">
+          <input
+            value={amount}
+            onChange={(e) => setAmount(e.target?.value?.toString())}
+            type="number"
+            min={1}
+            max={50000}
+            name="amount"
+            id="amount"
+            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+            placeholder="50000"
+          />
+        </div>
+      </div>
+
+      {fixedPublicKey ? null : (
+        <div className="flex space-x-2">
           {airdropButton}
           {balancesButton}
           {seeAccountButton}
-        </div>)}
-        {balanceNull === true && error ? error : null}
-          {balanceNull === true && !error
-            ? `Can't find account. Sending an Airdrop will create your account if it doesn't already exist.`
-            : null}
-          {!balanceNull && balances?.length ? (
-            <pre>{JSON.stringify(balances, null, 2)}</pre>
-          ) : null}
-      </div>
+        </div>
+      )}
+      {balanceNull === true && (
+        <div className="text-sm font-medium text-red-700">{error}</div>
+      )
+        ? error
+        : null}
+      {balanceNull === true && !error ? (
+        <div className="text-sm font-medium text-red-700">{`Can't find account. Sending an Airdrop will create your account if it doesn't already exist.`}</div>
+      ) : null}
+      {!balanceNull && balances?.length ? (
+        <pre>{JSON.stringify(balances, null, 2)}</pre>
+      ) : null}
+    </div>
   );
 }
 
@@ -179,10 +188,9 @@ export function WebAirdropFeature(props: WebAirdropFeatureProps) {
       </div>
 
       <br />
-          <WebUiCard>
-
-      <AirdropCard sessionStorageKeypairs={sessionStorageKeypairs} />     </WebUiCard>
-
+      <WebUiCard>
+        <AirdropCard sessionStorageKeypairs={sessionStorageKeypairs} />{' '}
+      </WebUiCard>
     </WebUiPage>
   );
 }
