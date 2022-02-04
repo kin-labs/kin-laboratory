@@ -12,10 +12,10 @@ export interface WebKeypairFeatureProps {}
 export function KeyPair({ kp }: { kp: SimpleKeypair }) {
   return (
     <div>
-      <div className="text-md leading-6 font-medium text-gray-700">Private Key : {kp.secret}</div>
-      <div className="text-md leading-6 font-medium text-gray-700">Public Key : {kp.publicKey}</div>
+      <div className="text-sm leading-6 font-medium text-gray-700">Private Key : {kp.secret}</div>
+      <div className="text-sm leading-6 font-medium text-gray-700">Public Key : {kp.publicKey}</div>
       <div className="bg-white  pt-5 pb-3   ">
-      <h3 className="text-md leading-6 font-medium text-gray-700">Test Net Actions:</h3>
+      <h3 className="text-sm leading-6 font-medium text-gray-700">Test Net Actions:</h3>
     </div>
       <AirdropCard
         sessionStorageKeypairs={[kp]}
