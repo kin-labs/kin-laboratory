@@ -16,7 +16,7 @@ export function AirdropCard({
   fixedPublicKey?: string;
   sessionStorageKeypairs: SimpleKeypair[];
 }) {
-  const [amount, setAmount] = useState<string>('');
+  const [amount, setAmount] = useState<string>('50000');
   const [balances, setBalances] = useState<KinAccountBalance[]>();
   const [balanceNull, setBalanceNull] = useState(false);
   const [publicKey, setPublicKey] = useState<string>(fixedPublicKey || '');
