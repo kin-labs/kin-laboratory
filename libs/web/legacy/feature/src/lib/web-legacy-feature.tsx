@@ -53,9 +53,7 @@ export function StellarConversionCard() {
   const [stellarSecret, setStellarSecret] = useState('');
   const [error, setError] = useState('');
   console.log('🚀 ~ error', error);
-  const [solanaKeypair, setSolanaKeypair] = useState<Keypair | null>(
-    null
-  );
+  const [solanaKeypair, setSolanaKeypair] = useState<Keypair | null>(null);
   console.log('🚀 ~ solanaKeypair', solanaKeypair);
   const convertStellarButton = (
     <WebUiButton
@@ -127,11 +125,20 @@ export function WebLegacyFeature(props: WebLegacyFeatureProps) {
         </span>
       </h1>
       <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-        <p>
-          For users with a Stellar generated private key that you'd like to
-          update to work with the latest version of Kin on Solana. Bram, comments please! Ta
-        </p>
-        <p>Make sure to keep your Private Keys safe!</p>
+        <div className="flex flex-col space-y-6">
+          <p>
+            For users with a Stellar generated private key that you'd like to
+            convert to work with other wallets on Solana.
+          </p>
+          <p>
+            You will be able to import the generated <code>secretKey</code> into{' '}
+            <a href="https://phantom.app" target="_blank" rel="noreferrer">
+              Phantom
+            </a>
+            .
+          </p>
+          <p>Make sure to keep your Private Keys safe!</p>
+        </div>
       </div>
 
       <br />
