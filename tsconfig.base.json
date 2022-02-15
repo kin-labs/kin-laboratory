@@ -15,8 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@kin-laboratory/keypair": ["libs/keypair/src/index.ts"],
       "@kin-laboratory/web/airdrop/feature": [
         "libs/web/airdrop/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/legacy/feature": [
+        "libs/web/legacy/feature/src/index.ts"
       ],
       "@kin-laboratory/web/core/data-access": [
         "libs/web/core/data-access/src/index.ts"
