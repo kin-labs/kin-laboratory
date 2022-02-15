@@ -129,7 +129,7 @@ export function WebLegacyFeature(props: WebLegacyFeatureProps) {
       <div className="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
         <p>
           For users with a Stellar generated private key that you'd like to
-          update to work with the latest version of Kin.
+          update to work with the latest version of Kin on Solana.
         </p>
         <p>Make sure to keep your Private Keys safe!</p>
       </div>
