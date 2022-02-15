@@ -34,6 +34,10 @@
       "@kin-laboratory/web/keypair/feature": [
         "libs/web/keypair/feature/src/index.ts"
       ],
+      "@kin-laboratory/web/memo/feature": [
+        "libs/web/memo/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/memo/ui": ["libs/web/memo/ui/src/index.ts"],
       "@kin-laboratory/web/shell/feature": [
         "libs/web/shell/feature/src/index.ts"
       ],

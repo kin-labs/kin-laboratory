@@ -5,6 +5,7 @@ specifiers:
   '@heroicons/react': ^1.0.5
   '@kin-sdk/client': ^0.7.0
   '@kin-sdk/core': ^0.7.0
+  '@kin-tools/kin-memo': ^1.1.0
   '@nrwl/cli': 13.4.3
   '@nrwl/cypress': 13.4.3
   '@nrwl/eslint-plugin-nx': 13.4.3
@@ -62,6 +63,7 @@ dependencies:
   '@headlessui/react': 1.4.2_react-dom@17.0.2+react@17.0.2
   '@heroicons/react': 1.0.5_react@17.0.2
   '@kin-sdk/client': 0.7.0
+  '@kin-tools/kin-memo': 1.1.0
   '@tailwindcss/forms': 0.4.0_tailwindcss@3.0.11
   autoprefixer: 10.4.1_postcss@8.4.5
   bip39: 3.0.4
@@ -1968,6 +1970,10 @@ packages:
       - bufferutil
       - debug
       - utf-8-validate
+
+  /@kin-tools/kin-memo/1.1.0:
+    resolution: {integrity: sha512-wCKP5LnnQrfYrUtDPr0EsHVOP7g5X16V88xv2/sB9k0IugN0y/+5qz9yo+2iaM3M4S1gJ8Z6a57dU8ohhGqxpw==}
+    dev: false
 
   /@kintegrate/google-protobuf/3.15.7:
     resolution: {integrity: sha512-lSUUhFs29jaGzh/CV013JS2j+0M6HeRP3YaY9trpmV0fK7naE68TKYNDQ2SLMO0Za2TIyN2taOSCyfLRkb1HBA==}
