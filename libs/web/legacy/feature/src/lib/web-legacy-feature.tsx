@@ -52,9 +52,19 @@ export function KeyPair({ kp }: { kp: SimpleKeypair }) {
 export function StellarConversionCard() {
   const [stellarSecret, setStellarSecret] = useState('');
   const [error, setError] = useState('');
+  const [showByteArray, setShowByteArray] = useState(false);
   console.log('🚀 ~ error', error);
   const [solanaKeypair, setSolanaKeypair] = useState<Keypair | null>(null);
   console.log('🚀 ~ solanaKeypair', solanaKeypair);
+  const showByteArrayButton = (
+    <WebUiButton
+      disabled={!solanaKeypair}
+      onClick={() => {
+        setShowByteArray((ba) => !ba);
+      }}
+      label={(showByteArray ? 'Hide' : 'Show') + ' Byte Array'}
+    />
+  );
   const convertStellarButton = (
     <WebUiButton
       disabled={!stellarSecret}
@@ -92,19 +102,34 @@ export function StellarConversionCard() {
         </div>
       </div>
 
-      <div className="flex space-x-2">{convertStellarButton}</div>
+      <div className="flex space-x-2">
+        {convertStellarButton} {showByteArrayButton}
+      </div>
 
       {solanaKeypair && !error ? (
-        <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
-          {JSON.stringify(
-            {
-              publicKey: solanaKeypair.publicKey,
-              secretKey: solanaKeypair.secretKey,
-            },
-            null,
-            2
+        <div>
+          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+            {JSON.stringify(
+              {
+                publicKey: solanaKeypair.publicKey,
+                secretKey: solanaKeypair.secretKey,
+              },
+              null,
+              2
+            )}
+          </pre>
+          {showByteArray && (
+            <div>
+              <pre>byteArray:</pre>
+              <textarea
+                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                rows={2}
+                readOnly
+                value={'[' + solanaKeypair?.solanaSecretKey?.join(', ') + ']'}
+              />
+            </div>
           )}
-        </pre>
+        </div>
       ) : null}
 
       {error ? (
@@ -135,7 +160,8 @@ export function WebLegacyFeature(props: WebLegacyFeatureProps) {
             <a href="https://phantom.app" target="_blank" rel="noreferrer">
               Phantom
             </a>
-            .
+            . Other Solana apps might require the secret key formatted in a{' '}
+            <code>byteArray</code>.
           </p>
           <p>Make sure to keep your Private Keys safe!</p>
         </div>
