@@ -1,3 +1,4 @@
+import { WebUiPre } from '@kin-laboratory/web/ui/pre';
 import { useState } from 'react';
 import { SimpleKeypair } from '@kin-sdk/client';
 
@@ -108,7 +109,7 @@ export function StellarConversionCard() {
 
       {solanaKeypair && !error ? (
         <div>
-          <pre style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>
+          <WebUiPre>
             {JSON.stringify(
               {
                 publicKey: solanaKeypair.publicKey,
@@ -117,7 +118,7 @@ export function StellarConversionCard() {
               null,
               2
             )}
-          </pre>
+          </WebUiPre>
           {showByteArray && (
             <div>
               <pre>byteArray:</pre>

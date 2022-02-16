@@ -19,9 +19,6 @@
       "@kin-laboratory/web/airdrop/feature": [
         "libs/web/airdrop/feature/src/index.ts"
       ],
-      "@kin-laboratory/web/legacy/feature": [
-        "libs/web/legacy/feature/src/index.ts"
-      ],
       "@kin-laboratory/web/core/data-access": [
         "libs/web/core/data-access/src/index.ts"
       ],
@@ -34,6 +31,13 @@
       "@kin-laboratory/web/keypair/feature": [
         "libs/web/keypair/feature/src/index.ts"
       ],
+      "@kin-laboratory/web/legacy/feature": [
+        "libs/web/legacy/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/memo/feature": [
+        "libs/web/memo/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/memo/ui": ["libs/web/memo/ui/src/index.ts"],
       "@kin-laboratory/web/shell/feature": [
         "libs/web/shell/feature/src/index.ts"
       ],
@@ -42,7 +46,8 @@
       "@kin-laboratory/web/ui/footer": ["libs/web/ui/footer/src/index.ts"],
       "@kin-laboratory/web/ui/header": ["libs/web/ui/header/src/index.ts"],
       "@kin-laboratory/web/ui/layout": ["libs/web/ui/layout/src/index.ts"],
-      "@kin-laboratory/web/ui/page": ["libs/web/ui/page/src/index.ts"]
+      "@kin-laboratory/web/ui/page": ["libs/web/ui/page/src/index.ts"],
+      "@kin-laboratory/web/ui/pre": ["libs/web/ui/pre/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

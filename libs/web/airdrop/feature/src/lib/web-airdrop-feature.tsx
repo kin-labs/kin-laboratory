@@ -1,6 +1,7 @@
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
+import { WebUiPre } from '@kin-laboratory/web/ui/pre';
 import { SimpleKeypair } from '@kin-sdk/client';
 import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client';
 import { useState, useEffect } from 'react';
@@ -108,7 +109,7 @@ export function AirdropCard({
       ) : null}
 
       {!fixedPublicKey ? null : (
-        <div className="flex space-x-2">
+        <div className="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0">
           {createAccountButton}
           {airdropButton}
           {balancesButton}
@@ -139,7 +140,7 @@ export function AirdropCard({
       </div>
 
       {fixedPublicKey ? null : (
-        <div className="flex space-x-2">
+        <div className="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0">
           {airdropButton}
           {balancesButton}
           {seeAccountButton}
@@ -154,7 +155,7 @@ export function AirdropCard({
         <div className="text-sm font-medium text-red-700">{`Can't find account. Sending an Airdrop will create your account if it doesn't already exist.`}</div>
       ) : null}
       {!balanceNull && balances?.length ? (
-        <pre>{JSON.stringify(balances, null, 2)}</pre>
+        <WebUiPre>{JSON.stringify(balances, null, 2)}</WebUiPre>
       ) : null}
     </div>
   );

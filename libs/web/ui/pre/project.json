@@ -1,0 +1,23 @@
+{
+  "root": "libs/web/ui/pre",
+  "sourceRoot": "libs/web/ui/pre/src",
+  "projectType": "library",
+  "tags": ["type:ui", "scope:web"],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/web/ui/pre/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/web/ui/pre"],
+      "options": {
+        "jestConfig": "libs/web/ui/pre/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
