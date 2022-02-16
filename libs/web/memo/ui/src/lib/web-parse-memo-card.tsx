@@ -43,26 +43,28 @@ export function WebParseMemoCard(props: WebMemoUiProps) {
 
   return (
     <WebUiCard title="Parse Kin Memo">
-      <div>
-        <label
-          htmlFor="memo"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Memo
-        </label>
-        <div className="mt-1">
-          <input
-            value={memo}
-            onChange={(e) => setMemo(e.target?.value)}
-            type="text"
-            name="memo"
-            id="memo"
-            className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-            placeholder="Enter the memo"
-          />
+      <div className="flex flex-col space-y-6">
+        <div>
+          <label
+            htmlFor="memo"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Memo
+          </label>
+          <div className="mt-1">
+            <input
+              value={memo}
+              onChange={(e) => setMemo(e.target?.value)}
+              type="text"
+              name="memo"
+              id="memo"
+              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              placeholder="Enter the memo"
+            />
+          </div>
         </div>
+        {result && <WebUiPre>{result}</WebUiPre>}
       </div>
-      {result && <WebUiPre>{result}</WebUiPre>}
     </WebUiCard>
   );
 }
