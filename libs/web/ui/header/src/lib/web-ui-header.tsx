@@ -6,8 +6,8 @@ const navigation = [
   { name: 'Home', href: '/home', current: true },
   { name: 'Keypair', href: '/keypair', current: false },
   { name: 'Airdrop', href: '/airdrop', current: false },
-  { name: 'Legacy', href: '/legacy', current: false },
   { name: 'Memo', href: '/memo', current: false },
+  { name: 'Legacy', href: '/legacy', current: false },
 ];
 
 function classNames(...classes: any) {
