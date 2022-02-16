@@ -19,4 +19,3 @@ export function WebUiCard(props: PropsWithChildren<WebUiCardProps>) {
   );
 }
 
-export default WebUiCard;
