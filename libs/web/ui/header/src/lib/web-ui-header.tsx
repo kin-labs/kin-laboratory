@@ -7,6 +7,7 @@ const navigation = [
   { name: 'Keypair', href: '/keypair', current: false },
   { name: 'Airdrop', href: '/airdrop', current: false },
   { name: 'Memo', href: '/memo', current: false },
+  { name: 'Transaction', href: '/transaction', current: false },
   { name: 'Legacy', href: '/legacy', current: false },
 ];
 

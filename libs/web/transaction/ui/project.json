@@ -1,0 +1,23 @@
+{
+  "root": "libs/web/transaction/ui",
+  "sourceRoot": "libs/web/transaction/ui/src",
+  "projectType": "library",
+  "tags": ["type:ui", "scope:web"],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/web/transaction/ui/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/web/transaction/ui"],
+      "options": {
+        "jestConfig": "libs/web/transaction/ui/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
