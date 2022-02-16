@@ -27,8 +27,8 @@ const navigation = [
 export function WebUiFooter(props: WebUiFooterProps) {
   const year = new Date().getFullYear();
   return (
-    <footer className="bg-white">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+    <footer className="bg-gray-50">
+      <div className="max-w-7xl mx-auto py-4 border-t border-gray-200 md:py-6 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <div className="flex justify-center space-x-6 md:order-2">
           {navigation.map((item) => (
             <a
@@ -41,8 +41,8 @@ export function WebUiFooter(props: WebUiFooterProps) {
             </a>
           ))}
         </div>
-        <div className="mt-8 md:mt-0 md:order-1">
-          <p className="text-center text-base text-gray-400">
+        <div className="mt-2 md:mt-0 md:order-1">
+          <p className="text-center text-sm md:text-base text-gray-400">
             &copy; {year} Kin Foundation. All rights reserved.
           </p>
         </div>

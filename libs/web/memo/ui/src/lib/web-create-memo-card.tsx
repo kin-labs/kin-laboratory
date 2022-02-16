@@ -35,7 +35,10 @@ export function WebCreateMemoCard(props: WebCreateMemoUiProps) {
     <WebUiCard title="Create Kin Memo">
       <div className="flex flex-col space-y-6">
         <div>
-          <div className="pb-4">
+          <div className="block text-sm font-medium text-gray-700">
+            Transaction Type
+          </div>
+          <div className="pt-2 pb-4 flex space-x-2">
             {types.map((item: any) => (
               <WebUiButton
                 disabled={type === item}
