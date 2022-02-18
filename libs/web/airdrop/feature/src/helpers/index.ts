@@ -97,8 +97,20 @@ export async function airdrop({
     setDropping(true);
     setError('');
 
+    let tokenAccount;
     try {
-      const [_, err] = await kin.requestAirdrop(publicKey, amount);
+      const [tokenAccounts, err] = await kin.getBalances(publicKey);
+      if (err || !tokenAccounts.length) {
+        setError(`Sorry, we couldn't find your tokenAccounts. ${err}`);
+        return;
+      }
+      tokenAccount = tokenAccounts[0];
+    } catch (e) {
+      console.log(`An error occurred: ${e}`);
+      return;
+    }
+    try {
+      const [_, err] = await kin.requestAirdrop(tokenAccount.account!, amount);
       err && console.log('🚀 ~ err', err);
 
       if (err === 'NOT_FOUND') {
