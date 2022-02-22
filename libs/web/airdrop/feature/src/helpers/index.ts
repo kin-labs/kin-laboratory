@@ -21,18 +21,16 @@ export async function getBalances({
 }: GetBalances) {
   setBalanceNull(false);
   try {
-    const [res, err] = await kin.getBalances(publicKey!);
-
-    if (res === null) setBalanceNull(true);
-
-    setBalances(res);
+    const [res, err] = await kin.getBalances(publicKey);
+    if (err) throw new Error('');
+    if (res) setBalances(res);
   } catch (error) {
     console.error(`An error occurred`, error);
+    setBalanceNull(true);
   }
 }
 
-interface CreateAccount extends GetBalances{
-  amount: string;
+interface CreateAccount extends GetBalances {
   sessionStorageKeypairs: SimpleKeypair[];
   setDropping: (dropping: boolean) => void;
   setError: (error: string) => void;
@@ -40,7 +38,6 @@ interface CreateAccount extends GetBalances{
 
 export async function createAccount({
   publicKey,
-  amount,
   sessionStorageKeypairs,
   setDropping,
   setError,
@@ -52,32 +49,29 @@ export async function createAccount({
     setError('');
 
     try {
+      const keyPair =
+        sessionStorageKeypairs?.length &&
+        sessionStorageKeypairs.find(
+          (kp: SimpleKeypair) => kp.publicKey === publicKey
+        );
 
-        const keyPair =
-          sessionStorageKeypairs?.length &&
-          sessionStorageKeypairs.find(
-            (kp: SimpleKeypair) => kp.publicKey === publicKey
-          );
-
-        if (keyPair && keyPair.secret) {
-          const [_, err] = await kin.createAccount(keyPair.secret);
-          console.log("🚀 ~ err", err)
-          console.log("🚀 ~ _", _)
-
-        } else {
-          throw new Error("Can't find keypair");
-
-        }
+      if (keyPair && keyPair.secret) {
+        const [_, err] = await kin.createAccount(keyPair.secret);
+        console.log('🚀 ~ err', err);
+        console.log('🚀 ~ _', _);
+      } else {
+        throw new Error("Can't find keypair");
+      }
 
       await getBalances({ setBalances, setBalanceNull, publicKey });
     } catch (err) {
-      setError('Sorry, something went wrong. Please try again later...')
+      setError('Sorry, something went wrong. Please try again later...');
       console.error(`An error occurred`, err);
     }
     setDropping(false);
   }
 }
-interface Airdrop extends GetBalances{
+interface Airdrop extends GetBalances {
   amount: string;
   sessionStorageKeypairs: SimpleKeypair[];
   setDropping: (dropping: boolean) => void;
@@ -95,40 +89,43 @@ export async function airdrop({
 }: Airdrop) {
   if (publicKey) {
     setDropping(true);
+    setBalanceNull(false);
     setError('');
 
     try {
       const [_, err] = await kin.requestAirdrop(publicKey, amount);
-      err && console.log('🚀 ~ err', err);
+      if (err) console.log('🚀 ~ err', err);
 
       if (err === 'NOT_FOUND') {
+        const [balances] = await kin.getBalances(publicKey);
         const keyPair =
           sessionStorageKeypairs?.length &&
           sessionStorageKeypairs.find(
             (kp: SimpleKeypair) => kp.publicKey === publicKey
           );
 
-        if (keyPair && keyPair.secret) {
+        if (balances.length > 0) {
+          const tokenAccount = balances[0].account || '';
+          if (typeof tokenAccount === 'string' && tokenAccount.length > 0) {
+            const [___, __err] = await kin.requestAirdrop(tokenAccount, amount);
+            if (__err) throw new Error('');
+          }
+        } else if (keyPair && keyPair.secret) {
           await kin.createAccount(keyPair.secret);
-          await airdrop({
-            publicKey,
-            amount,
-            sessionStorageKeypairs,
-            setDropping,
-            setError,
-            setBalances,
-            setBalanceNull,
-          });
+
+          const [__, _err] = await kin.requestAirdrop(publicKey, amount);
+
+          if (_err) throw new Error('');
         } else {
-          setError(
-            "Sorry, we couldn't find your keypair. Try again using a keypair generated on the 'Keypair' tab."
-          );
+          throw new Error('');
         }
       }
 
       await getBalances({ setBalances, setBalanceNull, publicKey });
     } catch (err) {
       console.error(`An error occurred`, err);
+      setError('Something went wrong with your Airdrop');
+      setBalanceNull(true);
     }
     setDropping(false);
   }

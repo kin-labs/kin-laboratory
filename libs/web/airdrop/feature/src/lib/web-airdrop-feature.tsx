@@ -56,7 +56,6 @@ export function AirdropCard({
           publicKey,
           setDropping,
           setError,
-          amount,
           sessionStorageKeypairs,
           setBalances,
           setBalanceNull,
@@ -146,11 +145,10 @@ export function AirdropCard({
           {seeAccountButton}
         </div>
       )}
-      {balanceNull === true && (
+
+      {balanceNull === true && error ? (
         <div className="text-sm font-medium text-red-700">{error}</div>
-      )
-        ? error
-        : null}
+      ): null}
       {balanceNull === true && !error ? (
         <div className="text-sm font-medium text-red-700">{`Can't find account. Sending an Airdrop will create your account if it doesn't already exist.`}</div>
       ) : null}
