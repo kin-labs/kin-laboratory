@@ -150,7 +150,7 @@ export function AirdropCard({
         <div className="text-sm font-medium text-red-700">{error}</div>
       ): null}
       {balanceNull === true && !error ? (
-        <div className="text-sm font-medium text-red-700">{`Can't find account. Sending an Airdrop will create your account if it doesn't already exist.`}</div>
+        <div className="text-sm font-medium text-red-700">{`We can't find that account`}</div>
       ) : null}
       {!balanceNull && balances?.length ? (
         <WebUiPre>{JSON.stringify(balances, null, 2)}</WebUiPre>

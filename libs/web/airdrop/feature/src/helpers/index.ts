@@ -107,16 +107,16 @@ export async function airdrop({
         if (balances?.length > 0) {
           const tokenAccount = balances[0].account || '';
           if (typeof tokenAccount === 'string' && tokenAccount.length > 0) {
-            const [___, __err] = await kin.requestAirdrop(tokenAccount, amount);
-            if (__err) throw new Error('');
+            const [__, _err] = await kin.requestAirdrop(tokenAccount, amount);
+            if (_err) throw new Error('');
           }
         } else if (keyPair && keyPair.secret) {
           await kin.createAccount(keyPair.secret);
 
           setDropping(true);
-          const [__, _err] = await kin.requestAirdrop(publicKey, amount);
+          const [___, __err] = await kin.requestAirdrop(publicKey, amount);
 
-          if (_err) throw new Error('');
+          if (__err) throw new Error('');
         } else {
           throw new Error('');
         }
