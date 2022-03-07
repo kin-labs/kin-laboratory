@@ -6,7 +6,7 @@ import { SimpleKeypair } from '@kin-sdk/client';
 import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client';
 import { useState, useEffect } from 'react';
 
-import { airdrop, createAccount, getBalances, openExplorer } from '../helpers';
+import { airdrop, createAccount, createTokenAccount, getBalances, openExplorer } from '../helpers';
 
 export interface WebAirdropFeatureProps {}
 
@@ -21,6 +21,7 @@ export function AirdropCard({
   const [balances, setBalances] = useState<KinAccountBalance[]>();
   const [balanceNull, setBalanceNull] = useState(false);
   const [publicKey, setPublicKey] = useState<string>(fixedPublicKey || '');
+  const [privateKey, setPrivateKey] = useState<string>('');
   const [dropping, setDropping] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
@@ -62,6 +63,25 @@ export function AirdropCard({
         })
       }
       label="Create Account"
+    />
+  );
+
+  const createTokenAccountButton = (
+    <WebUiButton
+      disabled={!privateKey || dropping}
+      onClick={() =>
+        privateKey &&
+        createTokenAccount({
+          publicKey,
+          privateKey,
+          setDropping,
+          setError,
+          setBalances,
+          setBalanceNull,
+          setPrivateKey,
+        })
+      }
+      label="Create Token Account"
     />
   );
 
@@ -155,6 +175,36 @@ export function AirdropCard({
       {!balanceNull && balances?.length ? (
         <WebUiPre>{JSON.stringify(balances, null, 2)}</WebUiPre>
       ) : null}
+
+       {error.includes('Kin Token Account') ? (
+         <>
+        <div>
+          <label
+            htmlFor="publicKey"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Private Key
+          </label>
+          <div className="mt-1">
+            <input
+              value={privateKey}
+              onChange={(e) => setPrivateKey(e.target?.value)}
+              type="text"
+              name="privateKey"
+              id="privateKey"
+              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              placeholder="e.g. Don8L4DTVrUrRAcVTsFoCRqei5Mokde3CV3K9Ut4nAGZ"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0">
+          {createTokenAccountButton}
+        </div>
+         </>
+      ) : null}
+
+
     </div>
   );
 }
