@@ -99,7 +99,7 @@ export async function createTokenAccountFromSecret({
         setError('');
         setPrivateKey('')
       } catch (err) {
-        setError('Sorry, something went wrong. Please try again later...');
+        setError('Sorry, something went wrong creating your Kin Token Account. Please try again later or let us know on Discord.');
         console.error(`An error occurred`, err);
       }
       setDropping(false);
