@@ -6,7 +6,13 @@ import { SimpleKeypair } from '@kin-sdk/client';
 import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client';
 import { useState, useEffect } from 'react';
 
-import { airdrop, createTokenAccountFromSessionKeypair, createTokenAccountFromSecret, getBalances, openExplorer } from '../helpers';
+import {
+  airdrop,
+  createTokenAccountFromSessionKeypair,
+  createTokenAccountFromSecret,
+  getBalances,
+  openExplorer,
+} from '../helpers';
 
 export interface WebAirdropFeatureProps {}
 
@@ -168,7 +174,7 @@ export function AirdropCard({
 
       {balanceNull === true && error ? (
         <div className="text-sm font-medium text-red-700">{error}</div>
-      ): null}
+      ) : null}
       {balanceNull === true && !error ? (
         <div className="text-sm font-medium text-red-700">{`We can't find that account`}</div>
       ) : null}
@@ -176,9 +182,8 @@ export function AirdropCard({
         <WebUiPre>{JSON.stringify(balances, null, 2)}</WebUiPre>
       ) : null}
 
-       {error.includes('Kin Token Account') ? (
-         <>
-        <div>
+      {error.includes('Kin Token Account') ? (
+        <>
           <label
             htmlFor="publicKey"
             className="block text-sm font-medium text-gray-700"
@@ -193,18 +198,43 @@ export function AirdropCard({
               name="privateKey"
               id="privateKey"
               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              placeholder="e.g. Don8L4DTVrUrRAcVTsFoCRqei5Mokde3CV3K9Ut4nAGZ"
+              placeholder="e.g. SCBKUFYAJJOEWON3Y2TMBKTM7ANKNYQ2IZW5TBGKQXULYC62XABSNTYX"
             />
           </div>
-        </div>
 
-        <div className="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0">
-          {createTokenAccountButton}
-        </div>
-         </>
+          <div>
+            <div className="mt-0 prose prose-indigo prose-lg text-gray-500 mx-auto">
+              <p>
+                If your private key is in the wrong format, why not try our
+                'Legacy' options to try converting it?
+              </p>
+              <p>
+                If you still can't get the airdrop to work, please let us know
+                in the{' '}
+
+                <a
+                  href="https://discord.com/channels/808859554997469244/934134681237073980"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  kin-laboratory
+                </a>{' '}
+                channel on  <a
+                  href="https://discord.gg/kdRyUNmHDn"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Discord
+                </a>.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row md:space-x-2 space-y-2 md:space-y-0">
+            {createTokenAccountButton}
+          </div>
+        </>
       ) : null}
-
-
     </div>
   );
 }
