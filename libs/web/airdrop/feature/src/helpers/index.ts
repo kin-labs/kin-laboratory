@@ -30,20 +30,20 @@ export async function getBalances({
   }
 }
 
-interface CreateAccount extends GetBalances {
+interface CreateTokenAccountFromSessionKeypair extends GetBalances {
   sessionStorageKeypairs: SimpleKeypair[];
   setDropping: (dropping: boolean) => void;
   setError: (error: string) => void;
 }
 
-export async function createAccount({
+export async function createTokenAccountFromSessionKeypair({
   publicKey,
   sessionStorageKeypairs,
   setDropping,
   setError,
   setBalances,
   setBalanceNull,
-}: CreateAccount) {
+}: CreateTokenAccountFromSessionKeypair) {
   if (publicKey) {
     setDropping(true);
     setError('');
@@ -72,14 +72,14 @@ export async function createAccount({
   }
 }
 
-interface CreateTokenAccount extends GetBalances {
+interface CreateTokenAccountFromSecret extends GetBalances {
   privateKey: string;
   setPrivateKey: (key: string) => void;
   setDropping: (dropping: boolean) => void;
   setError: (error: string) => void;
 }
 
-export async function createTokenAccount({
+export async function createTokenAccountFromSecret({
   publicKey,
   privateKey,
   setPrivateKey,
@@ -87,7 +87,7 @@ export async function createTokenAccount({
   setError,
   setBalances,
   setBalanceNull,
-}: CreateTokenAccount) {
+}: CreateTokenAccountFromSecret) {
   if (privateKey) {
     setDropping(true);
 

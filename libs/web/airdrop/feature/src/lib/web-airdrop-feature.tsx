@@ -6,7 +6,7 @@ import { SimpleKeypair } from '@kin-sdk/client';
 import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client';
 import { useState, useEffect } from 'react';
 
-import { airdrop, createAccount, createTokenAccount, getBalances, openExplorer } from '../helpers';
+import { airdrop, createTokenAccountFromSessionKeypair, createTokenAccountFromSecret, getBalances, openExplorer } from '../helpers';
 
 export interface WebAirdropFeatureProps {}
 
@@ -53,7 +53,7 @@ export function AirdropCard({
       disabled={!publicKey || dropping}
       onClick={() =>
         publicKey &&
-        createAccount({
+        createTokenAccountFromSessionKeypair({
           publicKey,
           setDropping,
           setError,
@@ -71,7 +71,7 @@ export function AirdropCard({
       disabled={!privateKey || dropping}
       onClick={() =>
         privateKey &&
-        createTokenAccount({
+        createTokenAccountFromSecret({
           publicKey,
           privateKey,
           setDropping,
