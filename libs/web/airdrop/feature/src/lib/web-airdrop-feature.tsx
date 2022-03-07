@@ -184,13 +184,13 @@ export function AirdropCard({
 
       {error.includes('Kin Token Account') ? (
         <>
-          <label
-            htmlFor="publicKey"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Private Key
-          </label>
-          <div className="mt-1">
+          <div>
+            <label
+              htmlFor="publicKey"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Private Key
+            </label>
             <input
               value={privateKey}
               onChange={(e) => setPrivateKey(e.target?.value)}
@@ -211,7 +211,6 @@ export function AirdropCard({
               <p>
                 If you still can't get the airdrop to work, please let us know
                 in the{' '}
-
                 <a
                   href="https://discord.com/channels/808859554997469244/934134681237073980"
                   target="_blank"
@@ -219,13 +218,15 @@ export function AirdropCard({
                 >
                   kin-laboratory
                 </a>{' '}
-                channel on  <a
+                channel on{' '}
+                <a
                   href="https://discord.gg/kdRyUNmHDn"
                   target="_blank"
                   rel="noreferrer"
                 >
                   Discord
-                </a>.
+                </a>
+                .
               </p>
             </div>
           </div>
