@@ -52,7 +52,7 @@
   "dependencies": {
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
-    "@kin-sdk/client": "^0.7.0",
+    "@kin-sdk/client": "^0.8.0",
     "@kin-tools/kin-memo": "^1.2.2",
     "@kin-tools/kin-transaction": "^1.2.2",
     "@solana/spl-token": "^0.1.8",

@@ -7,7 +7,7 @@ import {
 
 import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client';
 
-const kin = new KinClient(KinTest);
+const kin = new KinClient(KinTest, { appIndex: 407 }); // Kin Tools App
 
 interface GetBalances {
   publicKey: string;
