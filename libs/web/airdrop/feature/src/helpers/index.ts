@@ -30,20 +30,20 @@ export async function getBalances({
   }
 }
 
-interface CreateAccount extends GetBalances {
+interface CreateTokenAccountFromSessionKeypair extends GetBalances {
   sessionStorageKeypairs: SimpleKeypair[];
   setDropping: (dropping: boolean) => void;
   setError: (error: string) => void;
 }
 
-export async function createAccount({
+export async function createTokenAccountFromSessionKeypair({
   publicKey,
   sessionStorageKeypairs,
   setDropping,
   setError,
   setBalances,
   setBalanceNull,
-}: CreateAccount) {
+}: CreateTokenAccountFromSessionKeypair) {
   if (publicKey) {
     setDropping(true);
     setError('');
@@ -71,6 +71,41 @@ export async function createAccount({
     setDropping(false);
   }
 }
+
+interface CreateTokenAccountFromSecret extends GetBalances {
+  privateKey: string;
+  setPrivateKey: (key: string) => void;
+  setDropping: (dropping: boolean) => void;
+  setError: (error: string) => void;
+}
+
+export async function createTokenAccountFromSecret({
+  publicKey,
+  privateKey,
+  setPrivateKey,
+  setDropping,
+  setError,
+  setBalances,
+  setBalanceNull,
+}: CreateTokenAccountFromSecret) {
+  if (privateKey) {
+    setDropping(true);
+
+    try {
+        const [_, err] = await kin.createAccount(privateKey);
+        if(err) throw new Error(err);
+
+        await getBalances({ setBalances, setBalanceNull, publicKey  });
+        setError('');
+        setPrivateKey('')
+      } catch (err) {
+        setError('Sorry, something went wrong creating your Kin Token Account. Please try again later or let us know on Discord.');
+        console.error(`An error occurred`, err);
+      }
+      setDropping(false);
+  }
+}
+
 interface Airdrop extends GetBalances {
   amount: string;
   sessionStorageKeypairs: SimpleKeypair[];
@@ -97,7 +132,12 @@ export async function airdrop({
       if (err) console.log('🚀 ~ err', err);
 
       if (err === 'NOT_FOUND') {
-        const [balances] = await kin.getBalances(publicKey);
+        const [balances, balancesError] = await kin.getBalances(publicKey);
+
+        if(balancesError && balancesError === 'No Kin token accounts found'){
+          throw new Error(balancesError);
+        }
+
         const keyPair =
           sessionStorageKeypairs?.length &&
           sessionStorageKeypairs.find(
@@ -125,7 +165,11 @@ export async function airdrop({
       await getBalances({ setBalances, setBalanceNull, publicKey });
     } catch (err) {
       console.error(`An error occurred`, err);
-      setError('Something went wrong with your Airdrop');
+      if(typeof err === 'object' && err && err.toString().includes('No Kin token accounts found') ){
+        setError("It looks like you don't have a Kin Token Account")
+      } else {
+        setError('Something went wrong with your Airdrop');
+      }
       setBalanceNull(true);
     }
     setDropping(false);
