@@ -1,7 +1,8 @@
 import { Box, Container, Flex } from '@chakra-ui/react';
 import React, { PropsWithChildren, ReactNode, Suspense } from 'react';
 import { WebUiLayoutFooter } from './web-ui-layout-footer';
-import { WebUiLayoutHeader, WebUiLink } from './web-ui-layout-header';
+import { WebUiLayoutHeader } from './web-ui-layout-header';
+import { WebUiLinks } from './web-ui-link';
 
 export function WebUiLayout({
   children,
@@ -10,7 +11,7 @@ export function WebUiLayout({
   name,
 }: PropsWithChildren<{
   copyright: ReactNode;
-  links: WebUiLink[];
+  links: WebUiLinks;
   name: string;
 }>) {
   return (
