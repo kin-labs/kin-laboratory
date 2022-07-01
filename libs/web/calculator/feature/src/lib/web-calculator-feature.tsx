@@ -11,7 +11,6 @@ import {
   SliderThumb,
   SliderTrack,
   Stack,
-  Text,
 } from '@chakra-ui/react';
 import {
   useWebCalculator,
@@ -19,6 +18,7 @@ import {
 } from '@kin-laboratory/web/calculator/data-access';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
+import { Button } from '@saas-ui/react';
 
 export function WebCalculatorFeature() {
   return (
@@ -30,18 +30,37 @@ export function WebCalculatorFeature() {
 
 export function WebCalculator() {
   const {
+    DEFAULT_CREATION_PRICE,
+    DEFAULT_TRANSACTION_PRICE,
     creationCount,
     creationMax,
     creationPrice,
     creationTotal,
     setCreationCount,
     setTransactionCount,
+    setCreationPrice,
+    setTransactionPrice,
     total,
     transactionCount,
     transactionMax,
     transactionPrice,
     transactionTotal,
   } = useWebCalculator();
+
+  const promptCreationPrice = () => {
+    const value = prompt(
+      'Set the Creation Price. Remove the value to reset to the default.',
+      creationPrice?.toString()
+    );
+    setCreationPrice(Number(value || DEFAULT_CREATION_PRICE));
+  };
+  const promptTransactionPrice = () => {
+    const value = prompt(
+      'Set the Transaction Price. Remove the value to reset to the default.',
+      transactionPrice?.toString()
+    );
+    setTransactionPrice(Number(value || DEFAULT_TRANSACTION_PRICE));
+  };
 
   return (
     <WebUiPage
@@ -52,9 +71,14 @@ export function WebCalculator() {
         <Stack spacing={6}>
           <Flex justifyContent={'space-between'}>
             <Heading size="md">Creations</Heading>
-            <Text size="sm" color="gray.500">
+            <Button
+              colorScheme={'primary'}
+              onClick={promptCreationPrice}
+              size="sm"
+              variant={'ghost'}
+            >
               {creationPrice} SOL
-            </Text>
+            </Button>
           </Flex>
 
           <SliderCounter
@@ -66,9 +90,14 @@ export function WebCalculator() {
 
           <Flex justifyContent={'space-between'}>
             <Heading size="md">Transactions</Heading>
-            <Text size="sm" color="gray.500">
+            <Button
+              colorScheme={'primary'}
+              onClick={promptTransactionPrice}
+              size="sm"
+              variant={'ghost'}
+            >
               {transactionPrice} SOL
-            </Text>
+            </Button>
           </Flex>
           <SliderCounter
             min={0}

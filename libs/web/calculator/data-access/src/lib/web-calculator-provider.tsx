@@ -7,16 +7,20 @@ const DEFAULT_CREATION_MAX = 1_000;
 const DEFAULT_TRANSACTION_MAX = 100_000;
 
 export interface WebCalculatorProviderContext {
+  DEFAULT_CREATION_PRICE: number;
+  DEFAULT_TRANSACTION_PRICE: number;
   creationPrice: number;
   creationCount: number;
   creationMax: number;
   creationTotal: number;
   setCreationCount: (value: number) => void;
+  setCreationPrice: (value: number) => void;
   transactionPrice: number;
   transactionCount: number;
   transactionMax: number;
   transactionTotal: number;
   setTransactionCount: (value: number) => void;
+  setTransactionPrice: (value: number) => void;
   total: number;
 }
 
@@ -26,8 +30,12 @@ const WebCalculatorContext = React.createContext<WebCalculatorProviderContext>(
 
 function WebCalculatorProvider({ children }: { children: ReactNode }) {
   // Prices
-  const [creationPrice] = useState<number>(DEFAULT_CREATION_PRICE);
-  const [transactionPrice] = useState<number>(DEFAULT_TRANSACTION_PRICE);
+  const [creationPrice, setCreationPrice] = useState<number>(
+    DEFAULT_CREATION_PRICE
+  );
+  const [transactionPrice, setTransactionPrice] = useState<number>(
+    DEFAULT_TRANSACTION_PRICE
+  );
 
   // Max Values
   const [creationMax, setCreationMax] = useState<number>(DEFAULT_CREATION_MAX);
@@ -55,20 +63,24 @@ function WebCalculatorProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (transactionCount >= transactionMax) {
-      setCreationMax(transactionMax * 2);
+      setTransactionMax(transactionMax * 2);
     }
     if (transactionCount < DEFAULT_TRANSACTION_MAX) {
-      setCreationMax(DEFAULT_TRANSACTION_MAX);
+      setTransactionMax(DEFAULT_TRANSACTION_MAX);
     }
   }, [transactionMax, transactionCount]);
 
   const value: WebCalculatorProviderContext = {
+    DEFAULT_CREATION_PRICE,
+    DEFAULT_TRANSACTION_PRICE,
     creationCount,
     creationMax,
     creationPrice,
     creationTotal,
     setCreationCount,
     setTransactionCount,
+    setCreationPrice,
+    setTransactionPrice,
     total,
     transactionCount,
     transactionMax,
