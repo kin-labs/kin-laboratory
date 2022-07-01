@@ -11,7 +11,7 @@ export function WebUiCard({
   title,
 }: PropsWithChildren<WebUiCardProps>) {
   return (
-    <Card bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Card bg={useColorModeValue('gray.50', 'gray.900')}>
       {title && (
         <CardHeader>
           <CardTitle fontSize="xl">{title}</CardTitle>
