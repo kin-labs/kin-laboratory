@@ -1,5 +1,5 @@
 {
-  "root": "libs/web/legacy/feature",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web/legacy/feature/src",
   "projectType": "library",
   "tags": ["scope:web", "type:feature"],
@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/web/legacy/feature"],
       "options": {
-        "jestConfig": "libs/web/legacy/feature/jest.config.js",
+        "jestConfig": "libs/web/legacy/feature/jest.config.ts",
         "passWithNoTests": true
       }
     }

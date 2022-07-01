@@ -1,5 +1,5 @@
 {
-  "root": "libs/web/airdrop/feature",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web/airdrop/feature/src",
   "projectType": "library",
   "tags": ["type:feature", "scope:web"],
@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/web/airdrop/feature"],
       "options": {
-        "jestConfig": "libs/web/airdrop/feature/jest.config.js",
+        "jestConfig": "libs/web/airdrop/feature/jest.config.ts",
         "passWithNoTests": true
       }
     }

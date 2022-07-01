@@ -1,5 +1,5 @@
 {
-  "root": "libs/web/ui/button",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web/ui/button/src",
   "projectType": "library",
   "tags": ["type:ui", "scope:web"],
@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/web/ui/button"],
       "options": {
-        "jestConfig": "libs/web/ui/button/jest.config.js",
+        "jestConfig": "libs/web/ui/button/jest.config.ts",
         "passWithNoTests": true
       }
     }

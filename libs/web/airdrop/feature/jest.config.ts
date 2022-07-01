@@ -1,9 +1,10 @@
-module.exports = {
-  displayName: 'web-shell-feature',
+/* eslint-disable */
+export default {
+  displayName: 'web-airdrop-feature',
   preset: '../../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/web/shell/feature',
+  coverageDirectory: '../../../../coverage/libs/web/airdrop/feature',
 };

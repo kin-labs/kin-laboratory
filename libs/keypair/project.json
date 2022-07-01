@@ -1,10 +1,10 @@
 {
-  "root": "libs/keypair",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/keypair/src",
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/node:package",
+      "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/keypair",
@@ -25,7 +25,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/keypair"],
       "options": {
-        "jestConfig": "libs/keypair/jest.config.js",
+        "jestConfig": "libs/keypair/jest.config.ts",
         "passWithNoTests": true
       }
     }

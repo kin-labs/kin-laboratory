@@ -1,5 +1,5 @@
 {
-  "root": "apps/web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/web/src",
   "projectType": "application",
   "targets": {
@@ -18,7 +18,8 @@
         "assets": ["apps/web/src/favicon.ico", "apps/web/src/assets"],
         "styles": ["apps/web/src/styles.css"],
         "scripts": [],
-        "webpackConfig": "apps/web/webpack.config.js"
+        "webpackConfig": "apps/web/webpack.config.js",
+        "postcssConfig": "apps/web/postcss.config.js"
       },
       "configurations": {
         "production": {
@@ -34,6 +35,12 @@
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false
+        },
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
         }
       }
     },
@@ -47,8 +54,12 @@
         "production": {
           "buildTarget": "web:build:production",
           "hmr": false
+        },
+        "development": {
+          "buildTarget": "web:build:development"
         }
-      }
+      },
+      "defaultConfiguration": "development"
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -61,7 +72,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/web"],
       "options": {
-        "jestConfig": "apps/web/jest.config.js",
+        "jestConfig": "apps/web/jest.config.ts",
         "passWithNoTests": true
       }
     }

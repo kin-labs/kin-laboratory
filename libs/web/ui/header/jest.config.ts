@@ -1,9 +1,10 @@
-module.exports = {
-  displayName: 'web-core-feature',
+/* eslint-disable */
+export default {
+  displayName: 'web-ui-header',
   preset: '../../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/web/core/feature',
+  coverageDirectory: '../../../../coverage/libs/web/ui/header',
 };

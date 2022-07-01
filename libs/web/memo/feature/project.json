@@ -1,5 +1,5 @@
 {
-  "root": "libs/web/memo/feature",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web/memo/feature/src",
   "projectType": "library",
   "tags": ["type:feature", "scope:web"],
@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/web/memo/feature"],
       "options": {
-        "jestConfig": "libs/web/memo/feature/jest.config.js",
+        "jestConfig": "libs/web/memo/feature/jest.config.ts",
         "passWithNoTests": true
       }
     }

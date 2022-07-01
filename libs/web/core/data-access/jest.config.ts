@@ -1,9 +1,10 @@
-module.exports = {
-  displayName: 'web-transaction-ui',
+/* eslint-disable */
+export default {
+  displayName: 'web-core-data-access',
   preset: '../../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/web/transaction/ui',
+  coverageDirectory: '../../../../coverage/libs/web/core/data-access',
 };

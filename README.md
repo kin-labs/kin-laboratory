@@ -4,12 +4,12 @@
 
 ```shell
 # clone repo...
-pnpm install
+yarn install
 ```
 
 ## Development server
 
-Run `pnpm run dev:web` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `yarn run dev:web` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
 ## Adding capabilities to your workspace
 

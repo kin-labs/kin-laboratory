@@ -1,5 +1,5 @@
 {
-  "root": "libs/web/transaction/feature",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web/transaction/feature/src",
   "projectType": "library",
   "tags": ["type:feature", "scope:web"],
@@ -17,7 +17,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/web/transaction/feature"],
       "options": {
-        "jestConfig": "libs/web/transaction/feature/jest.config.js",
+        "jestConfig": "libs/web/transaction/feature/jest.config.ts",
         "passWithNoTests": true
       }
     }

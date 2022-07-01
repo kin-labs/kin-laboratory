@@ -1,5 +1,5 @@
 {
-  "root": "libs/web/home/feature",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web/home/feature/src",
   "projectType": "library",
   "tags": ["scope:web", "type:feature"],
@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/web/home/feature"],
       "options": {
-        "jestConfig": "libs/web/home/feature/jest.config.js",
+        "jestConfig": "libs/web/home/feature/jest.config.ts",
         "passWithNoTests": true
       }
     }

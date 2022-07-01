@@ -1,5 +1,5 @@
 {
-  "root": "libs/web/ui/footer",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web/ui/footer/src",
   "projectType": "library",
   "tags": ["type:ui", "scope:web"],
@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/web/ui/footer"],
       "options": {
-        "jestConfig": "libs/web/ui/footer/jest.config.js",
+        "jestConfig": "libs/web/ui/footer/jest.config.ts",
         "passWithNoTests": true
       }
     }

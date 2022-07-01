@@ -22,5 +22,6 @@
     "web-ui-layout": "libs/web/ui/layout",
     "web-ui-page": "libs/web/ui/page",
     "web-ui-pre": "libs/web/ui/pre"
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }
