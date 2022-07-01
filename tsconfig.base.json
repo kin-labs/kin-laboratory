@@ -30,6 +30,7 @@
       "@kin-laboratory/web/legacy/feature": [
         "libs/web/legacy/feature/src/index.ts"
       ],
+      "@kin-laboratory/web/legacy/ui": ["libs/web/legacy/ui/src/index.ts"],
       "@kin-laboratory/web/memo/feature": [
         "libs/web/memo/feature/src/index.ts"
       ],

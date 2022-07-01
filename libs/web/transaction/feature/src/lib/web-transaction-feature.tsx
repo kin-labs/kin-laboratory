@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react';
 import {
   WebTransactionCard,
   WebTransactionForm,
@@ -6,14 +7,13 @@ import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
 import { WebUiPre } from '@kin-laboratory/web/ui/pre';
+import { ButtonGroup } from '@saas-ui/react';
 import {
   clusterApiUrl,
   Connection,
   ParsedTransactionWithMeta,
 } from '@solana/web3.js';
 import { useEffect, useState } from 'react';
-
-export interface WebTransactionFeatureProps {}
 
 const networks = [
   {
@@ -34,7 +34,7 @@ const networks = [
   },
 ];
 
-export function WebTransactionFeature(props: WebTransactionFeatureProps) {
+export function WebTransactionFeature() {
   const [network, setNetwork] = useState(networks[0]);
   const [connection, setConnection] = useState<Connection>();
   const [txId, setTxId] = useState<string>();
@@ -70,43 +70,38 @@ export function WebTransactionFeature(props: WebTransactionFeatureProps) {
   }
 
   return (
-    <WebUiPage>
-      <div className="flex flex-col space-y-6">
-        <h1 className="mt-2 block text-3xl text-left leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          Kin Transaction
-        </h1>
-        <div className="flex flex-col space-y-3 mt-6 prose prose-indigo prose-lg text-gray-500">
-          <p>
-            Search for transactions and validate if they are valid KIN
-            transactions.
-          </p>
-        </div>
-        <div className="flex space-x-2">
-          {networks.map((item) => (
-            <WebUiButton
-              disabled={item === network}
-              label={item.name}
-              key={item.name}
-              onClick={() => setNetwork(item)}
-            />
-          ))}
-        </div>
-        {connection ? (
-          <WebUiCard title={network.name}>
-            <WebTransactionForm lookup={lookupTransaction} />
-          </WebUiCard>
-        ) : (
-          'Not Connected!'
-        )}
-        {error && <WebUiPre>{error}</WebUiPre>}
-        {tx && (
-          <WebUiCard title={txId}>
-            <WebTransactionCard tx={tx} mint={network?.mint} />
-          </WebUiCard>
-        )}
-      </div>
+    <WebUiPage
+      title="Kin Transaction"
+      subtitle={
+        <Text>
+          Search for transactions and validate if they are valid KIN
+          transactions.
+        </Text>
+      }
+    >
+      <ButtonGroup>
+        {networks.map((item) => (
+          <WebUiButton
+            disabled={item === network}
+            label={item.name}
+            key={item.name}
+            onClick={() => setNetwork(item)}
+          />
+        ))}
+      </ButtonGroup>
+      {connection ? (
+        <WebUiCard title={network.name}>
+          <WebTransactionForm lookup={lookupTransaction} />
+        </WebUiCard>
+      ) : (
+        'Not Connected!'
+      )}
+      {error && <WebUiPre>{error}</WebUiPre>}
+      {tx && (
+        <WebUiCard title={txId}>
+          <WebTransactionCard tx={tx} mint={network?.mint} />
+        </WebUiCard>
+      )}
     </WebUiPage>
   );
 }
-
-export default WebTransactionFeature;

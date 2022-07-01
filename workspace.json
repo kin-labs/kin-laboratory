@@ -10,6 +10,7 @@
     "web-keypair-feature": "libs/web/keypair/feature",
     "web-keypair-ui": "libs/web/keypair/ui",
     "web-legacy-feature": "libs/web/legacy/feature",
+    "web-legacy-ui": "libs/web/legacy/ui",
     "web-memo-feature": "libs/web/memo/feature",
     "web-memo-ui": "libs/web/memo/ui",
     "web-shell-feature": "libs/web/shell/feature",

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import WebHomeFeature from './web-home-feature';
+import { WebHomeFeature } from './web-home-feature';
 
 describe('WebHomeFeature', () => {
   it('should render successfully', () => {

@@ -31,14 +31,14 @@ export async function getBalances({
 }
 
 interface CreateAccount extends GetBalances {
-  sessionStorageKeypairs: SimpleKeypair[];
+  keypairs: SimpleKeypair[];
   setDropping: (dropping: boolean) => void;
   setError: (error: string) => void;
 }
 
 export async function createAccount({
   publicKey,
-  sessionStorageKeypairs,
+  keypairs,
   setDropping,
   setError,
   setBalances,
@@ -50,10 +50,8 @@ export async function createAccount({
 
     try {
       const keyPair =
-        sessionStorageKeypairs?.length &&
-        sessionStorageKeypairs.find(
-          (kp: SimpleKeypair) => kp.publicKey === publicKey
-        );
+        keypairs?.length &&
+        keypairs.find((kp: SimpleKeypair) => kp.publicKey === publicKey);
 
       if (keyPair && keyPair.secret) {
         const [_, err] = await kin.createAccount(keyPair.secret);
@@ -73,7 +71,7 @@ export async function createAccount({
 }
 interface Airdrop extends GetBalances {
   amount: string;
-  sessionStorageKeypairs: SimpleKeypair[];
+  keypairs: SimpleKeypair[];
   setDropping: (dropping: boolean) => void;
   setError: (error: string) => void;
 }
@@ -81,7 +79,7 @@ interface Airdrop extends GetBalances {
 export async function airdrop({
   publicKey,
   amount,
-  sessionStorageKeypairs,
+  keypairs,
   setDropping,
   setError,
   setBalances,
@@ -99,10 +97,8 @@ export async function airdrop({
       if (err === 'NOT_FOUND') {
         const [balances] = await kin.getBalances(publicKey);
         const keyPair =
-          sessionStorageKeypairs?.length &&
-          sessionStorageKeypairs.find(
-            (kp: SimpleKeypair) => kp.publicKey === publicKey
-          );
+          keypairs?.length &&
+          keypairs.find((kp: SimpleKeypair) => kp.publicKey === publicKey);
 
         if (balances?.length > 0) {
           const tokenAccount = balances[0].account || '';
