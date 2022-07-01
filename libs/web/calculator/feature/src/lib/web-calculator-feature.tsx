@@ -19,6 +19,8 @@ import {
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
 import { Button } from '@saas-ui/react';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 export function WebCalculatorFeature() {
   return (
@@ -29,7 +31,10 @@ export function WebCalculatorFeature() {
 }
 
 export function WebCalculator() {
+  let [searchParams, setSearchParams] = useSearchParams();
   const {
+    DEFAULT_CREATION_COUNT,
+    DEFAULT_TRANSACTION_COUNT,
     DEFAULT_CREATION_PRICE,
     DEFAULT_TRANSACTION_PRICE,
     creationCount,
@@ -62,6 +67,28 @@ export function WebCalculator() {
     setTransactionPrice(Number(value || DEFAULT_TRANSACTION_PRICE));
   };
 
+  useEffect(() => {
+    if (!searchParams.has('creations')) {
+      updateCreations(DEFAULT_CREATION_COUNT);
+    } else {
+      setCreationCount(Number(searchParams.get('creations')));
+    }
+    if (!searchParams.has('transactions')) {
+      updateTransactions(DEFAULT_TRANSACTION_COUNT);
+    } else {
+      setTransactionCount(Number(searchParams.get('transactions')));
+    }
+  }, [searchParams]);
+
+  const updateCreations = (count: number) => {
+    searchParams.set('creations', count.toString());
+    setSearchParams(searchParams);
+  };
+  const updateTransactions = (count: number) => {
+    searchParams.set('transactions', count.toString());
+    setSearchParams(searchParams);
+  };
+
   return (
     <WebUiPage
       title="Solana Fee Calculator"
@@ -85,7 +112,7 @@ export function WebCalculator() {
             min={0}
             max={creationMax}
             value={creationCount}
-            setValue={setCreationCount}
+            setValue={updateCreations}
           />
 
           <Flex justifyContent={'space-between'}>
@@ -103,7 +130,7 @@ export function WebCalculator() {
             min={0}
             max={transactionMax}
             value={transactionCount}
-            setValue={setTransactionCount}
+            setValue={updateTransactions}
           />
         </Stack>
       </WebUiCard>

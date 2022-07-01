@@ -1,5 +1,8 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
+const DEFAULT_CREATION_COUNT = 400;
+const DEFAULT_TRANSACTION_COUNT = 36058;
+
 const DEFAULT_CREATION_PRICE = 0.00204928;
 const DEFAULT_TRANSACTION_PRICE = 0.000005;
 
@@ -7,6 +10,8 @@ const DEFAULT_CREATION_MAX = 1_000;
 const DEFAULT_TRANSACTION_MAX = 100_000;
 
 export interface WebCalculatorProviderContext {
+  DEFAULT_CREATION_COUNT: number;
+  DEFAULT_TRANSACTION_COUNT: number;
   DEFAULT_CREATION_PRICE: number;
   DEFAULT_TRANSACTION_PRICE: number;
   creationPrice: number;
@@ -44,8 +49,12 @@ function WebCalculatorProvider({ children }: { children: ReactNode }) {
   );
 
   // Counters
-  const [creationCount, setCreationCount] = useState<number>(400);
-  const [transactionCount, setTransactionCount] = useState<number>(36058);
+  const [creationCount, setCreationCount] = useState<number>(
+    DEFAULT_CREATION_COUNT
+  );
+  const [transactionCount, setTransactionCount] = useState<number>(
+    DEFAULT_TRANSACTION_COUNT
+  );
 
   // Totals
   const creationTotal = creationCount * creationPrice;
@@ -71,6 +80,8 @@ function WebCalculatorProvider({ children }: { children: ReactNode }) {
   }, [transactionMax, transactionCount]);
 
   const value: WebCalculatorProviderContext = {
+    DEFAULT_CREATION_COUNT,
+    DEFAULT_TRANSACTION_COUNT,
     DEFAULT_CREATION_PRICE,
     DEFAULT_TRANSACTION_PRICE,
     creationCount,
