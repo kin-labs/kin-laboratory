@@ -1,7 +1,9 @@
+import { Stack } from '@chakra-ui/react';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPre } from '@kin-laboratory/web/ui/pre';
 
 import { KinMemo, TransactionType } from '@kin-tools/kin-memo';
+import { Field, Form, FormLayout } from '@saas-ui/react';
 import { useEffect, useState } from 'react';
 
 export interface WebMemoUiProps {
@@ -43,28 +45,23 @@ export function WebParseMemoCard(props: WebMemoUiProps) {
 
   return (
     <WebUiCard title="Parse Kin Memo">
-      <div className="flex flex-col space-y-6">
-        <div>
-          <label
-            htmlFor="memo"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Memo
-          </label>
-          <div className="mt-1">
-            <input
-              value={memo}
-              onChange={(e) => setMemo(e.target?.value)}
+      <Stack spacing={6}>
+        <Form onSubmit={() => console.log()}>
+          <FormLayout>
+            <Field
+              size="lg"
               type="text"
               name="memo"
-              id="memo"
-              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+              colorScheme="primary"
               placeholder="Enter the memo"
+              label="Memo"
+              value={memo}
+              onChange={(e: any) => setMemo(e.target?.value)}
             />
-          </div>
-        </div>
+          </FormLayout>
+        </Form>
         {result && <WebUiPre>{result}</WebUiPre>}
-      </div>
+      </Stack>
     </WebUiCard>
   );
 }

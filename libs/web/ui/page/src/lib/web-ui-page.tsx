@@ -1,13 +1,23 @@
-import { PropsWithChildren } from 'react';
+import { Box, Heading, Stack } from '@chakra-ui/react';
+import { PropsWithChildren, ReactNode } from 'react';
 
-export interface WebUiPageProps {}
-
-export function WebUiPage(props: PropsWithChildren<WebUiPageProps>) {
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="py-3 md:py-6">{props.children}</div>
-    </div>
-  );
+export interface WebUiPageProps {
+  title?: string;
+  subtitle?: ReactNode;
 }
 
-export default WebUiPage;
+export function WebUiPage({
+  children,
+  title,
+  subtitle,
+}: PropsWithChildren<WebUiPageProps>) {
+  return (
+    <Stack spacing={{ base: 2, md: 6 }}>
+      <Stack spacing={2}>
+        {title && <Heading size="lg">{title}</Heading>}
+        {subtitle && <Box color="gray.500">{subtitle}</Box>}
+      </Stack>
+      {children}
+    </Stack>
+  );
+}

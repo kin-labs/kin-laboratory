@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import WebUiPage from './web-ui-page';
+import { WebUiPage } from './web-ui-page';
 
 describe('WebUiPage', () => {
   it('should render successfully', () => {

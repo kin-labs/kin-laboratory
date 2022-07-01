@@ -1,21 +1,23 @@
+import { useColorModeValue } from '@chakra-ui/react';
+import { Card, CardBody, CardHeader, CardTitle } from '@saas-ui/react';
 import { PropsWithChildren } from 'react';
 
 export interface WebUiCardProps {
   title?: string;
 }
 
-export function WebUiCard(props: PropsWithChildren<WebUiCardProps>) {
+export function WebUiCard({
+  children,
+  title,
+}: PropsWithChildren<WebUiCardProps>) {
   return (
-    <div className="bg-white overflow-hidden shadow rounded-lg border border-gray-100">
-      {props?.title && (
-        <div className="bg-gray-50 px-4 py-5 border-b border-gray-200 sm:px-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
-            {props.title}
-          </h3>
-        </div>
+    <Card bg={useColorModeValue('gray.100', 'gray.900')}>
+      {title && (
+        <CardHeader>
+          <CardTitle fontSize="xl">{title}</CardTitle>
+        </CardHeader>
       )}
-      <div className="px-4 py-5 sm:p-6">{props.children}</div>
-    </div>
+      <CardBody>{children}</CardBody>
+    </Card>
   );
 }
-

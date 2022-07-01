@@ -1,3 +1,4 @@
+import { ButtonGroup, Heading, Stack } from '@chakra-ui/react';
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPre } from '@kin-laboratory/web/ui/pre';
@@ -7,6 +8,7 @@ import {
   MAX_APP_INDEX,
   TransactionType,
 } from '@kin-tools/kin-memo';
+import { Field, Form, FormLayout } from '@saas-ui/react';
 
 import { useEffect, useState } from 'react';
 
@@ -33,44 +35,39 @@ export function WebCreateMemoCard(props: WebCreateMemoUiProps) {
 
   return (
     <WebUiCard title="Create Kin Memo">
-      <div className="flex flex-col space-y-6">
-        <div>
-          <div className="block text-sm font-medium text-gray-700">
-            Transaction Type
-          </div>
-          <div className="pt-2 pb-4 flex space-x-2">
+      <Stack spacing={6}>
+        <Stack>
+          <Heading size="md">Transaction Type</Heading>
+          <ButtonGroup>
             {types.map((item: any) => (
               <WebUiButton
+                size="lg"
                 disabled={type === item}
                 key={item}
                 label={item}
                 onClick={() => selectType(item)}
               />
             ))}
-          </div>
-
-          <label
-            htmlFor="appIndex"
-            className="block text-sm font-medium text-gray-700"
-          >
-            AppIndex
-          </label>
-          <div className="mt-1">
-            <input
-              value={appIndex}
-              onChange={(e) => setAppIndex(parseInt(e.target?.value))}
-              type="number"
-              min={1}
-              max={MAX_APP_INDEX}
-              name="appIndex"
-              id="appIndex"
-              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              placeholder="Enter your App Index"
-            />
-          </div>
-        </div>
+          </ButtonGroup>
+          <Form onSubmit={() => console.log()}>
+            <FormLayout>
+              <Field
+                size="lg"
+                min={1}
+                max={MAX_APP_INDEX}
+                type="text"
+                name="name"
+                colorScheme="primary"
+                placeholder="Enter your App Index"
+                label="AppIndex"
+                value={String(appIndex)}
+                onChange={(e: any) => setAppIndex(parseInt(e.target?.value))}
+              />
+            </FormLayout>
+          </Form>
+        </Stack>
         {memo && <WebUiPre>{memo}</WebUiPre>}
-      </div>
+      </Stack>
     </WebUiCard>
   );
 }

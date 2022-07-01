@@ -1,3 +1,4 @@
+import { Stack, Text } from '@chakra-ui/react';
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiPre } from '@kin-laboratory/web/ui/pre';
 import { TransactionType } from '@kin-tools/kin-memo';
@@ -27,16 +28,13 @@ export function WebTransactionCard(props: WebTransactionCardProps) {
   );
 
   return (
-    <div className="flex flex-col space-y-6">
-      <WebUiPre>
-        {valid?.mint ? '✅' : '❌'} Valid KIN Transaction
-        <br />
-        {valid?.memo ? '✅' : '❌'} Valid KIN Memo
-        <br />
-        {valid?.isSolTransfer ? '✅' : '❌'} SOL Transfer
-        <br />
-        {valid?.isTokenTransfer ? '✅' : '❌'} Token Transfer
-      </WebUiPre>
+    <Stack spacing={6}>
+      <Stack spacing={2}>
+        <Text>{valid?.mint ? '✅' : '❌'} Valid KIN Transaction</Text>
+        <Text> {valid?.memo ? '✅' : '❌'} Valid KIN Memo </Text>
+        <Text> {valid?.isSolTransfer ? '✅' : '❌'} SOL Transfer </Text>
+        <Text> {valid?.isTokenTransfer ? '✅' : '❌'} Token Transfer </Text>
+      </Stack>
 
       {transfer && (
         <WebUiPre>
@@ -46,10 +44,11 @@ export function WebTransactionCard(props: WebTransactionCardProps) {
 
       {parsed?.tokenTransfer && (
         <WebUiPre>
-          Mint: {parsed?.mint}
-          <br />
-          Token {parsed?.tokenTransfer?.parsed?.type}{' '}
-          {JSON.stringify(parsed?.tokenTransfer?.parsed?.info, null, 2)}
+          <Text>Mint: {parsed?.mint}</Text>
+          <Text>Token {parsed?.tokenTransfer?.parsed?.type} </Text>
+          <WebUiPre>
+            {JSON.stringify(parsed?.tokenTransfer?.parsed?.info, null, 2)}
+          </WebUiPre>
         </WebUiPre>
       )}
 
@@ -67,15 +66,13 @@ export function WebTransactionCard(props: WebTransactionCardProps) {
           )}
         </WebUiPre>
       )}
-      <div>
-        <WebUiButton
-          label={(showRaw ? 'Hide' : 'Show') + ' raw transaction'}
-          onClick={() => setShowRaw((val) => !val)}
-        />
-      </div>
+      <WebUiButton
+        label={(showRaw ? 'Hide' : 'Show') + ' raw transaction'}
+        onClick={() => setShowRaw((val) => !val)}
+      />
       {showRaw && (
         <WebUiPre>Transaction: {JSON.stringify(props.tx, null, 2)}</WebUiPre>
       )}
-    </div>
+    </Stack>
   );
 }

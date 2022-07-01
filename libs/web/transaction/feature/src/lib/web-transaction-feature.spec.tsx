@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import WebTransactionFeature from './web-transaction-feature';
+import { WebTransactionFeature } from './web-transaction-feature';
 
 describe('WebTransactionFeature', () => {
   it('should render successfully', () => {
