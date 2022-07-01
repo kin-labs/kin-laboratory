@@ -1,4 +1,5 @@
 import { WebAirdropFeature } from '@kin-laboratory/web/airdrop/feature';
+import { WebCalculatorFeature } from '@kin-laboratory/web/calculator/feature';
 import { WebHomeFeature } from '@kin-laboratory/web/home/feature';
 import { WebKeypairFeature } from '@kin-laboratory/web/keypair/feature';
 import { WebLegacyFeature } from '@kin-laboratory/web/legacy/feature';
@@ -13,6 +14,7 @@ const links: WebUiLinks = [
   { label: 'Home', path: '/home' },
   { label: 'Keypair', path: '/keypair' },
   { label: 'Airdrop', path: '/airdrop' },
+  { label: 'Fee calculator', path: 'calculator' },
   { label: 'Memo', path: '/memo' },
   { label: 'Transaction', path: '/transaction' },
   { label: 'Legacy', path: '/legacy' },
@@ -24,6 +26,7 @@ export function WebShellFeature() {
       <Routes>
         <Route index element={<Navigate to="/home" />} />
         <Route path="/airdrop" element={<WebAirdropFeature />} />
+        <Route path="/calculator" element={<WebCalculatorFeature />} />
         <Route path="/home" element={<WebHomeFeature />} />
         <Route path="/keypair" element={<WebKeypairFeature />} />
         <Route path="/legacy" element={<WebLegacyFeature />} />

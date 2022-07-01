@@ -77,8 +77,7 @@ export function WebUiLayoutHeader({
             <Heading size="md" display={{ base: 'none', md: 'block' }}>
               <RouterLink to="/">{name}</RouterLink>
             </Heading>
-
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+            <Flex display={{ base: 'none', md: 'flex' }}>
               <DesktopNav links={links} />
             </Flex>
           </Stack>
@@ -88,7 +87,7 @@ export function WebUiLayoutHeader({
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
-          spacing={6}
+          spacing={{ base: 2, md: 6 }}
         >
           <WebUiLayoutThemeToggle />
         </Stack>
@@ -106,7 +105,7 @@ const DesktopNav = ({ links }: { links: WebUiLinks }) => {
   const linkHoverColor = useColorModeValue('gray.800', 'white');
 
   return (
-    <Stack direction={'row'} spacing={4}>
+    <Stack direction={'row'} spacing={{ base: 2, md: 2, lg: 4 }}>
       {links.map((link) => (
         <Box key={link.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
