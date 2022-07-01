@@ -1,9 +1,5 @@
-@tailwind components;
-@tailwind base;
-@tailwind utilities;
-
-@layer base {
-  a {
-    @apply text-indigo-600 underline;
-  }
+body,
+html,
+#root {
+  height: 100vh;
 }
