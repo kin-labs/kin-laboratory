@@ -26,13 +26,12 @@ function convertStellarKey({
     }
   }
 
-  console.log(stellarSecret);
   if (onSuccess && solanaKeyPair) {
     onSuccess(solanaKeyPair);
   }
 }
 
-export function WebLegacyUiConversionCard() {
+export function WebKeypairUiConversionCard() {
   const [stellarSecret, setStellarSecret] = useState('');
   const [error, setError] = useState('');
   const [showByteArray, setShowByteArray] = useState(false);

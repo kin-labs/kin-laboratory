@@ -6,6 +6,9 @@ export function WebUiLayoutFooter({ copyright }: { copyright: ReactNode }) {
     <Box
       bg={useColorModeValue('gray.100', 'gray.900')}
       color={useColorModeValue('gray.600', 'gray.500')}
+      borderTop={1}
+      borderStyle={'solid'}
+      borderColor={useColorModeValue('gray.200', 'gray.900')}
     >
       <Flex
         h={12}

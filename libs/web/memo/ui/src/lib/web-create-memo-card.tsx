@@ -36,36 +36,33 @@ export function WebCreateMemoCard(props: WebCreateMemoUiProps) {
   return (
     <WebUiCard title="Create Kin Memo">
       <Stack spacing={6}>
-        <Stack>
-          <Heading size="md">Transaction Type</Heading>
-          <ButtonGroup>
-            {types.map((item: any) => (
-              <WebUiButton
-                size="lg"
-                disabled={type === item}
-                key={item}
-                label={item}
-                onClick={() => selectType(item)}
-              />
-            ))}
-          </ButtonGroup>
-          <Form onSubmit={() => console.log()}>
-            <FormLayout>
-              <Field
-                size="lg"
-                min={1}
-                max={MAX_APP_INDEX}
-                type="text"
-                name="name"
-                colorScheme="primary"
-                placeholder="Enter your App Index"
-                label="AppIndex"
-                value={String(appIndex)}
-                onChange={(e: any) => setAppIndex(parseInt(e.target?.value))}
-              />
-            </FormLayout>
-          </Form>
-        </Stack>
+        <Heading size="md">Transaction Type</Heading>
+        <ButtonGroup>
+          {types.map((item: any) => (
+            <WebUiButton
+              disabled={type === item}
+              key={item}
+              label={item}
+              onClick={() => selectType(item)}
+            />
+          ))}
+        </ButtonGroup>
+        <Form onSubmit={() => console.log()}>
+          <FormLayout>
+            <Field
+              size="lg"
+              min={1}
+              max={MAX_APP_INDEX}
+              type="text"
+              name="name"
+              colorScheme="primary"
+              placeholder="Enter your App Index"
+              label="AppIndex"
+              value={String(appIndex)}
+              onChange={(e: any) => setAppIndex(parseInt(e.target?.value))}
+            />
+          </FormLayout>
+        </Form>
         {memo && <WebUiPre>{memo}</WebUiPre>}
       </Stack>
     </WebUiCard>

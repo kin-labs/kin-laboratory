@@ -1,5 +1,8 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
-import { WebKeypairUiCard } from '@kin-laboratory/web/keypair/ui';
+import {
+  WebKeypairUiCard,
+  WebKeypairUiConversionCard,
+} from '@kin-laboratory/web/keypair/ui';
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
@@ -35,31 +38,58 @@ export function WebKeypairFeature() {
   }, [keyPair]);
 
   return (
-    <WebUiPage
-      title="Generate Keypairs"
-      subtitle={
-        <Stack>
-          <Text>
-            These keypairs can be used on the Kin network where one is required.
-            For example, it can be used as an account master key or to sign
-            transactions for accounts.
-          </Text>
-          <Text>Make sure to keep your Private Keys safe!</Text>
+    <Stack spacing={[6, 12]}>
+      <WebUiPage
+        title="Generate Keypairs"
+        subtitle={
+          <Stack>
+            <Text>
+              These keypairs can be used on the Kin network where one is
+              required. For example, it can be used as an account master key or
+              to sign transactions for accounts.
+            </Text>
+            <Text>Make sure to keep your Private Keys safe!</Text>
+          </Stack>
+        }
+      >
+        <Stack spacing={6}>
+          <WebUiButton size="lg" onClick={generate} label="Generate" />
+          {keypairs?.map((kp) => (
+            <Box key={kp.publicKey}>
+              <WebUiCard>
+                <Stack spacing={6}>
+                  <WebKeypairUiCard kp={kp} />
+                </Stack>
+              </WebUiCard>
+            </Box>
+          ))}
         </Stack>
-      }
-    >
-      <Stack spacing={6}>
-        <WebUiButton size="lg" onClick={generate} label="Generate" />
-        {keypairs?.map((kp) => (
-          <Box key={kp.publicKey}>
-            <WebUiCard>
-              <Stack spacing={6}>
-                <WebKeypairUiCard kp={kp} />
-              </Stack>
-            </WebUiCard>
-          </Box>
-        ))}
-      </Stack>
-    </WebUiPage>
+      </WebUiPage>
+      <WebUiPage
+        title="Convert Stellar Seed to Solana"
+        subtitle={
+          <Stack spacing={6}>
+            <p>
+              For users with a Stellar generated private key that you'd like to
+              convert to work with other wallets on Solana.
+            </p>
+            <p>
+              You will be able to import the generated <code>secretKey</code>{' '}
+              into{' '}
+              <a href="https://phantom.app" target="_blank" rel="noreferrer">
+                Phantom
+              </a>
+              . Other Solana apps might require the secret key formatted in a{' '}
+              <code>byteArray</code>.
+            </p>
+            <p>Make sure to keep your Private Keys safe!</p>
+          </Stack>
+        }
+      >
+        <WebUiCard>
+          <WebKeypairUiConversionCard />
+        </WebUiCard>
+      </WebUiPage>
+    </Stack>
   );
 }

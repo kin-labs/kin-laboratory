@@ -20,6 +20,15 @@
         "libs/web/airdrop/feature/src/index.ts"
       ],
       "@kin-laboratory/web/airdrop/ui": ["libs/web/airdrop/ui/src/index.ts"],
+      "@kin-laboratory/web/calculator/data-access": [
+        "libs/web/calculator/data-access/src/index.ts"
+      ],
+      "@kin-laboratory/web/calculator/feature": [
+        "libs/web/calculator/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/calculator/ui": [
+        "libs/web/calculator/ui/src/index.ts"
+      ],
       "@kin-laboratory/web/home/feature": [
         "libs/web/home/feature/src/index.ts"
       ],
@@ -27,10 +36,6 @@
         "libs/web/keypair/feature/src/index.ts"
       ],
       "@kin-laboratory/web/keypair/ui": ["libs/web/keypair/ui/src/index.ts"],
-      "@kin-laboratory/web/legacy/feature": [
-        "libs/web/legacy/feature/src/index.ts"
-      ],
-      "@kin-laboratory/web/legacy/ui": ["libs/web/legacy/ui/src/index.ts"],
       "@kin-laboratory/web/memo/feature": [
         "libs/web/memo/feature/src/index.ts"
       ],

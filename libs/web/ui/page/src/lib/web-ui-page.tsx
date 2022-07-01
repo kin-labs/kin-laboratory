@@ -12,8 +12,8 @@ export function WebUiPage({
   subtitle,
 }: PropsWithChildren<WebUiPageProps>) {
   return (
-    <Stack spacing={{ base: 2, md: 6 }}>
-      <Stack spacing={2}>
+    <Stack spacing={{ base: 4, md: 6 }}>
+      <Stack spacing={2} px={2}>
         {title && <Heading size="lg">{title}</Heading>}
         {subtitle && <Box color="gray.500">{subtitle}</Box>}
       </Stack>

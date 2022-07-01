@@ -2,33 +2,21 @@ import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
   Avatar,
   Box,
-  chakra,
   Collapse,
   Flex,
   Heading,
   IconButton,
-  Link,
-  Popover,
-  PopoverTrigger,
   Stack,
-  Text,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
 
 import React from 'react';
-import { Link as RouterLink, NavLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import { WebUiHeaderLinks } from './web-ui-header-links';
+import { WebUiHeaderLinksMobile } from './web-ui-header-links-mobile';
 import { WebUiLayoutThemeToggle } from './web-ui-layout-theme-toggle';
-
-export const WebUiLayoutHeaderLink = chakra(NavLink, {
-  baseStyle: { p: 4, rounded: 'md' },
-});
-
-export type WebUiLinks = WebUiLink[];
-export interface WebUiLink {
-  label: string;
-  path: string;
-}
+import { WebUiLinks } from './web-ui-link';
 
 export function WebUiLayoutHeader({
   links,
@@ -77,9 +65,8 @@ export function WebUiLayoutHeader({
             <Heading size="md" display={{ base: 'none', md: 'block' }}>
               <RouterLink to="/">{name}</RouterLink>
             </Heading>
-
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-              <DesktopNav links={links} />
+            <Flex display={{ base: 'none', md: 'flex' }}>
+              <WebUiHeaderLinks links={links} />
             </Flex>
           </Stack>
         </Flex>
@@ -88,100 +75,15 @@ export function WebUiLayoutHeader({
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
-          spacing={6}
+          spacing={{ base: 2, md: 6 }}
         >
           <WebUiLayoutThemeToggle />
         </Stack>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav />
+        <WebUiHeaderLinksMobile links={links} />
       </Collapse>
     </Box>
   );
 }
-
-const DesktopNav = ({ links }: { links: WebUiLinks }) => {
-  const linkColor = useColorModeValue('gray.600', 'gray.200');
-  const linkHoverColor = useColorModeValue('gray.800', 'white');
-
-  return (
-    <Stack direction={'row'} spacing={4}>
-      {links.map((link) => (
-        <Box key={link.label}>
-          <Popover trigger={'hover'} placement={'bottom-start'}>
-            <PopoverTrigger>
-              <Link
-                p={2}
-                as={WebUiLayoutHeaderLink}
-                to={link.path}
-                fontWeight={500}
-                color={linkColor}
-                _activeLink={{
-                  color: useColorModeValue('primary.600', 'primary.100'),
-                  bg: useColorModeValue('primary.100', 'primary.800'),
-                }}
-                _hover={{
-                  textDecoration: 'none',
-                  color: linkHoverColor,
-                }}
-              >
-                {link.label}
-              </Link>
-            </PopoverTrigger>
-          </Popover>
-        </Box>
-      ))}
-    </Stack>
-  );
-};
-
-const MobileNav = () => {
-  return (
-    <Stack
-      bg={useColorModeValue('white', 'gray.800')}
-      p={4}
-      display={{ md: 'none' }}
-    >
-      {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
-  );
-};
-
-const MobileNavItem = ({ label, href }: NavItem) => {
-  return (
-    <Flex
-      py={2}
-      as={Link}
-      href={href ?? '#'}
-      justify={'space-between'}
-      align={'center'}
-      _hover={{
-        textDecoration: 'none',
-      }}
-    >
-      <Text fontWeight={600} color={useColorModeValue('gray.600', 'gray.200')}>
-        {label}
-      </Text>
-    </Flex>
-  );
-};
-
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  href?: string;
-}
-
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: 'Learn Design',
-    href: '#',
-  },
-  {
-    label: 'Hire Designers',
-    href: '#',
-  },
-];

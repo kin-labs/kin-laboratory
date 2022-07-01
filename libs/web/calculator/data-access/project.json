@@ -1,21 +1,23 @@
 {
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/web/legacy/feature/src",
+  "sourceRoot": "libs/web/calculator/data-access/src",
   "projectType": "library",
-  "tags": ["scope:web", "type:feature"],
+  "tags": ["type:data-access", "scope:web"],
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/web/legacy/feature/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "libs/web/calculator/data-access/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/web/legacy/feature"],
+      "outputs": ["coverage/libs/web/calculator/data-access"],
       "options": {
-        "jestConfig": "libs/web/legacy/feature/jest.config.ts",
+        "jestConfig": "libs/web/calculator/data-access/jest.config.ts",
         "passWithNoTests": true
       }
     }

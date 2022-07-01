@@ -1,6 +1,6 @@
 {
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/web/legacy/ui/src",
+  "sourceRoot": "libs/web/calculator/ui/src",
   "projectType": "library",
   "tags": ["type:ui", "scope:web"],
   "targets": {
@@ -8,14 +8,14 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/web/legacy/ui/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["libs/web/calculator/ui/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/web/legacy/ui"],
+      "outputs": ["coverage/libs/web/calculator/ui"],
       "options": {
-        "jestConfig": "libs/web/legacy/ui/jest.config.ts",
+        "jestConfig": "libs/web/calculator/ui/jest.config.ts",
         "passWithNoTests": true
       }
     }
