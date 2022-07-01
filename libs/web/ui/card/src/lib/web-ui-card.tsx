@@ -1,4 +1,4 @@
-import { useColorModeValue } from '@chakra-ui/react';
+import { Stack, useColorModeValue } from '@chakra-ui/react';
 import { Card, CardBody, CardHeader, CardTitle } from '@saas-ui/react';
 import { PropsWithChildren } from 'react';
 
@@ -17,7 +17,9 @@ export function WebUiCard({
           <CardTitle fontSize="xl">{title}</CardTitle>
         </CardHeader>
       )}
-      <CardBody>{children}</CardBody>
+      <CardBody>
+        <Stack spacing={{ base: 4, md: 6 }}>{children}</Stack>
+      </CardBody>
     </Card>
   );
 }

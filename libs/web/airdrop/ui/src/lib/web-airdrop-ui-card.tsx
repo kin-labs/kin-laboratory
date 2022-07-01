@@ -81,7 +81,7 @@ export function WebAirdropUiCard({
   );
 
   return (
-    <Stack>
+    <Stack spacing={{ base: 4, md: 6 }}>
       {!fixedPublicKey ? (
         <Stack>
           <Form onSubmit={() => console.log()}>
