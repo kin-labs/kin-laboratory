@@ -16,8 +16,16 @@ import { useEffect, useState } from 'react';
 export interface WebTransactionFeatureProps {}
 
 const networks = [
-  { name: 'Mainnet Beta', url: clusterApiUrl('mainnet-beta') },
-  { name: 'Devnet', url: clusterApiUrl('devnet') },
+  {
+    name: 'Mainnet Beta',
+    url: clusterApiUrl('mainnet-beta'),
+    mint: 'kinXdEcpDQeHPEuQnqmUgtYykqKGVFq6CeVX5iAHJq6',
+  },
+  {
+    name: 'Devnet',
+    url: clusterApiUrl('devnet'),
+    mint: 'KinDesK3dYWo3R2wDk6Ucaf31tvQCCSYyL8Fuqp33GX',
+  },
   { name: 'Testnet', url: clusterApiUrl('testnet') },
   {
     name: 'KIN Testnet',
