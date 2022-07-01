@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
   displayName: 'web-home-feature',
   preset: '../../../../jest.preset.js',
   transform: {

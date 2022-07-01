@@ -1,9 +1,10 @@
-module.exports = {
-  displayName: 'web-legacy-feature',
+/* eslint-disable */
+export default {
+  displayName: 'web-core-feature',
   preset: '../../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/web/legacy/feature',
+  coverageDirectory: '../../../../coverage/libs/web/core/feature',
 };

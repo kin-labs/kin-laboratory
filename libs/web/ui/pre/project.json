@@ -1,5 +1,5 @@
 {
-  "root": "libs/web/ui/pre",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web/ui/pre/src",
   "projectType": "library",
   "tags": ["type:ui", "scope:web"],
@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/web/ui/pre"],
       "options": {
-        "jestConfig": "libs/web/ui/pre/jest.config.js",
+        "jestConfig": "libs/web/ui/pre/jest.config.ts",
         "passWithNoTests": true
       }
     }

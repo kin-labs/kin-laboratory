@@ -1,5 +1,5 @@
 {
-  "root": "libs/web/core/data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/web/core/data-access/src",
   "projectType": "library",
   "tags": ["scope:web", "type:data-access"],
@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/web/core/data-access"],
       "options": {
-        "jestConfig": "libs/web/core/data-access/jest.config.js",
+        "jestConfig": "libs/web/core/data-access/jest.config.ts",
         "passWithNoTests": true
       }
     }

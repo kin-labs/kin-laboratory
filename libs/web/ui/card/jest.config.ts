@@ -1,9 +1,10 @@
-module.exports = {
-  displayName: 'web-memo-ui',
+/* eslint-disable */
+export default {
+  displayName: 'web-ui-card',
   preset: '../../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/web/memo/ui',
+  coverageDirectory: '../../../../coverage/libs/web/ui/card',
 };

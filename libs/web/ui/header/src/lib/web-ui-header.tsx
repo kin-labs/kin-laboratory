@@ -57,7 +57,6 @@ export function WebUiHeader(props: WebUiHeaderProps) {
                     <NavLink
                       key={item.name}
                       to={item.href}
-                      activeClassName="bg-gray-900 text-white"
                       className={
                         'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
                       }

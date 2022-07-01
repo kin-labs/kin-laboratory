@@ -1,9 +1,10 @@
-module.exports = {
-  displayName: 'web-ui-header',
+/* eslint-disable */
+export default {
+  displayName: 'web-keypair-feature',
   preset: '../../../../jest.preset.js',
   transform: {
     '^.+\\.[tj]sx?$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../../../coverage/libs/web/ui/header',
+  coverageDirectory: '../../../../coverage/libs/web/keypair/feature',
 };
