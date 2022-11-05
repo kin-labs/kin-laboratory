@@ -60,7 +60,7 @@ export function WebUiLayoutHeader({
             justifyContent={{ base: 'center', md: 'start' }}
           >
             <RouterLink to="/">
-              <Avatar src={'/assets/kin-logo.svg'} bg="inherit" size="sm" />
+              <Avatar src={'/assets/logo.svg'} bg="inherit" size="sm" />
             </RouterLink>
             <Heading size="md" display={{ base: 'none', md: 'block' }}>
               <RouterLink to="/">{name}</RouterLink>
