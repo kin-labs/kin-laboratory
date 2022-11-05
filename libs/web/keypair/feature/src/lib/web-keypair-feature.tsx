@@ -2,6 +2,7 @@ import { Box, Stack, Text } from '@chakra-ui/react';
 import {
   WebKeypairUiCard,
   WebKeypairUiConversionCard,
+  WebKeypairUiConversionTrustWalletCard,
 } from '@kin-laboratory/web/keypair/ui';
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
@@ -88,6 +89,27 @@ export function WebKeypairFeature() {
       >
         <WebUiCard>
           <WebKeypairUiConversionCard />
+        </WebUiCard>
+      </WebUiPage>
+      <WebUiPage
+        title="Convert Trust Wallet Stellar Kin to Solana"
+        subtitle={
+          <Stack spacing={6}>
+            <p>
+              For Trust Wallet users who want to move their Kin from a legacy
+              Stellar account to a Solana account.
+            </p>
+            <p>Input your Trust Wallet mnemonic to complete the conversion.</p>
+            <p>
+              You can use the generated private key to create a new Solana
+              wallet on Trust Wallet containing your Kin.
+            </p>
+            <p>Make sure to keep your Private Keys safe!</p>
+          </Stack>
+        }
+      >
+        <WebUiCard>
+          <WebKeypairUiConversionTrustWalletCard />
         </WebUiCard>
       </WebUiPage>
     </Stack>
