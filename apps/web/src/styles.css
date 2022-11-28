@@ -3,3 +3,13 @@ html,
 #root {
   height: 100vh;
 }
+
+.homeLink {
+  width: 60px;
+  display: flex;
+}
+
+.homeLogo {
+  width: 100% !important;
+  margin-top: -4px !important;
+}
