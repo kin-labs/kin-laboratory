@@ -62,7 +62,7 @@ export function WebUiLayoutHeader({
             <RouterLink className="homeLink" to="/">
               <Avatar
                 className="homeLogo"
-                src={'/assets/kin-name-logo.svg'}
+                src={'/assets/kin-logo-violet.svg'}
                 bg="inherit"
                 size="sm"
               />

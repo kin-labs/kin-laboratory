@@ -5,11 +5,17 @@ html,
 }
 
 .homeLink {
-  width: 70px;
+  width: 60px;
   display: flex;
 }
 
 .homeLogo {
   width: 100% !important;
+  height: 20px !important;
   transform: translateY(-3px);
+}
+
+.homeLogo img {
+  object-fit: unset !important;
+  border-radius: none !important;
 }
