@@ -24,6 +24,7 @@
     "@nrwl/workspace": "14.3.6",
     "@solana/web3.js": "^1.34.0",
     "@testing-library/react": "13.3.0",
+    "@trustwallet/wallet-core": "^3.0.3",
     "@types/bs58": "^4.0.1",
     "@types/jest": "27.4.1",
     "@types/node": "18.0.0",
@@ -63,15 +64,23 @@
     "@solana/spl-token": "^0.1.8",
     "bip39": "^3.0.4",
     "bs58": "^4.0.1",
+    "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.6.5",
+    "crypto": "npm:crypto-browserify",
+    "crypto-browserify": "^3.12.0",
+    "crypto-js": "^4.1.1",
     "ed25519-hd-key": "^1.2.0",
     "framer-motion": "^6",
     "hex-to-32": "^2.0.0",
+    "path": "npm:path-browserify",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.3.0",
     "regenerator-runtime": "0.13.7",
     "stream": "^0.0.2",
     "tslib": "^2.0.0"
+  },
+  "browser": {
+    "crypto": false
   }
 }

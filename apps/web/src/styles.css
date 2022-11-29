@@ -3,3 +3,19 @@ html,
 #root {
   height: 100vh;
 }
+
+.homeLink {
+  width: 60px;
+  display: flex;
+}
+
+.homeLogo {
+  width: 100% !important;
+  height: 20px !important;
+  transform: translateY(-3px);
+}
+
+.homeLogo img {
+  object-fit: unset !important;
+  border-radius: none !important;
+}
