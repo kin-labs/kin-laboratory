@@ -3,7 +3,7 @@ import {
   WebKeypairUiCard,
   WebKeypairUiConversionCard,
   WebKeypairUiConversionTrustWalletCard,
-} from '@kin-laboratory/web/keypair/ui';
+} from '@kin-laboratory/web/legacy/ui';
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
