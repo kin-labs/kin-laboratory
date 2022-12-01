@@ -1,5 +1,4 @@
 import { Code, Heading, Stack } from '@chakra-ui/react';
-import { WebAirdropUiCard } from '@kin-laboratory/web/airdrop/ui';
 import { SimpleKeypair } from '@kin-sdk/client';
 
 export function WebKeypairUiCard({ kp }: { kp: SimpleKeypair }) {
@@ -13,8 +12,6 @@ export function WebKeypairUiCard({ kp }: { kp: SimpleKeypair }) {
       <Code colorScheme="primary" size={{ base: 'xs', md: 'sm' }}>
         {kp.publicKey}
       </Code>
-      <Heading size={{ base: 'base', md: 'md' }}>Test Net Actions</Heading>
-      <WebAirdropUiCard keypairs={[kp]} fixedPublicKey={kp.publicKey} />
     </Stack>
   );
 }

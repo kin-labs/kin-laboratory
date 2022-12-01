@@ -1,28 +1,28 @@
 import { Alert, Stack } from '@chakra-ui/react';
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiPre } from '@kin-laboratory/web/ui/pre';
-import { SimpleKeypair } from '@kin-sdk/client';
-import { KinAccountBalance } from '@kin-sdk/client/src/lib/agora/kin-agora-client';
+import { Keypair } from '@kin-kinetic/keypair';
 import { ButtonGroup, Field, Form, FormLayout } from '@saas-ui/react';
 import { useEffect, useState } from 'react';
-import { airdrop, createAccount, getBalances, openExplorer } from '../helpers';
+import { airdrop, createAccount, getBalance, openExplorer } from '../helpers';
+import { BalanceResponse } from '@kin-kinetic/sdk';
 
 export function WebAirdropUiCard({
   fixedPublicKey,
   keypairs,
 }: {
   fixedPublicKey?: string;
-  keypairs: SimpleKeypair[];
+  keypairs: Keypair[];
 }) {
   const [amount, setAmount] = useState<string>('50000');
-  const [balances, setBalances] = useState<KinAccountBalance[]>();
+  const [balance, setBalance] = useState<BalanceResponse | null>(null);
   const [balanceNull, setBalanceNull] = useState(false);
   const [publicKey, setPublicKey] = useState<string>(fixedPublicKey || '');
   const [dropping, setDropping] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    setBalances([]);
+    setBalance(null);
   }, [fixedPublicKey]);
 
   const airdropButton = (
@@ -35,7 +35,7 @@ export function WebAirdropUiCard({
           setError,
           amount,
           keypairs,
-          setBalances,
+          setBalance,
           setBalanceNull,
         })
       }
@@ -54,7 +54,7 @@ export function WebAirdropUiCard({
           setDropping,
           setError,
           keypairs,
-          setBalances,
+          setBalance,
           setBalanceNull,
         })
       }
@@ -66,9 +66,9 @@ export function WebAirdropUiCard({
     <WebUiButton
       disabled={!publicKey}
       onClick={() =>
-        publicKey && getBalances({ publicKey, setBalances, setBalanceNull })
+        publicKey && getBalance({ publicKey, setBalance, setBalanceNull })
       }
-      label="Get Balances"
+      label="Get Balance"
     />
   );
 
@@ -105,8 +105,8 @@ export function WebAirdropUiCard({
       {!fixedPublicKey ? null : (
         <ButtonGroup>
           {createAccountButton}
-          {airdropButton}
           {balancesButton}
+          {airdropButton}
           {seeAccountButton}
         </ButtonGroup>
       )}
@@ -140,8 +140,8 @@ export function WebAirdropUiCard({
       {balanceNull && !error ? (
         <Alert status={'error'}>We can't find that account</Alert>
       ) : null}
-      {!balanceNull && balances?.length ? (
-        <WebUiPre>{JSON.stringify(balances, null, 2)}</WebUiPre>
+      {!balanceNull && balance ? (
+        <WebUiPre>{JSON.stringify(balance, null, 2)}</WebUiPre>
       ) : null}
     </Stack>
   );

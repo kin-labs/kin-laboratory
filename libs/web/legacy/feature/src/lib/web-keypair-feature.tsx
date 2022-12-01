@@ -14,12 +14,12 @@ export function WebKeypairFeature() {
   const [keyPair, setKeyPair] = useState<SimpleKeypair | null>();
 
   function addToSessionStorage(kp: SimpleKeypair) {
-    const kpsString = sessionStorage.getItem('keyPairs') || '';
+    const kpsString = sessionStorage.getItem('stellarKeypairs') || '';
 
     let kps: SimpleKeypair[] = kpsString ? JSON.parse(kpsString) : [];
     kps = [kp, ...kps];
 
-    sessionStorage.setItem('keyPairs', JSON.stringify(kps));
+    sessionStorage.setItem('stellarKeypairs', JSON.stringify(kps));
   }
 
   function generate() {
@@ -31,7 +31,7 @@ export function WebKeypairFeature() {
 
   const [keypairs, setKeypairs] = useState<SimpleKeypair[] | null>(null);
   useEffect(() => {
-    const kps = sessionStorage.getItem('keyPairs') || '';
+    const kps = sessionStorage.getItem('stellarKeypairs') || '';
 
     if (kps.length) {
       setKeypairs(JSON.parse(kps));

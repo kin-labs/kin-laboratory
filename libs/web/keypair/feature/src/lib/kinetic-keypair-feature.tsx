@@ -3,41 +3,46 @@ import { WebKeypairUiCard } from '@kin-laboratory/web/keypair/ui';
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
-import { Keypair, SimpleKeypair } from '@kin-sdk/client';
+// import { Keypair, SimpleKeypair } from '@kin-sdk/client';
+import { Keypair } from '@kin-kinetic/keypair';
+
 import { useEffect, useState } from 'react';
 
 export function KineticKeypairFeature() {
-  const [keyPair, setKeyPair] = useState<SimpleKeypair | null>();
+  const [keypair, setKeypair] = useState<Keypair | null>();
 
-  function addToSessionStorage(kp: SimpleKeypair) {
+  function addToSessionStorage(kp: Keypair) {
     const kpsString = sessionStorage.getItem('keyPairs') || '';
 
-    let kps: SimpleKeypair[] = kpsString ? JSON.parse(kpsString) : [];
+    let kps: Keypair[] = kpsString ? JSON.parse(kpsString) : [];
     kps = [kp, ...kps];
 
     sessionStorage.setItem('keyPairs', JSON.stringify(kps));
   }
 
   function generate() {
-    setKeyPair(null);
-    const kp = Keypair.randomKeys();
+    setKeypair(null);
+    const mnemonic = Keypair.generateMnemonic();
+    console.log('🚀 ~ mnemonic', mnemonic);
+    const kp = Keypair.fromSecret(mnemonic);
+    console.log('🚀 ~ kp', kp);
     addToSessionStorage(kp);
-    setKeyPair(kp);
+    setKeypair(kp);
   }
 
-  const [keypairs, setKeypairs] = useState<SimpleKeypair[] | null>(null);
+  const [keypairs, setKeypairs] = useState<Keypair[] | null>(null);
   useEffect(() => {
     const kps = sessionStorage.getItem('keyPairs') || '';
 
     if (kps.length) {
       setKeypairs(JSON.parse(kps));
     }
-  }, [keyPair]);
+  }, [keypair]);
 
   return (
     <Stack spacing={[6, 12]}>
       <WebUiPage
-        title="Generate Keypairs"
+        title="Generate Kinetic Keypairs"
         subtitle={
           <Stack>
             <Text>

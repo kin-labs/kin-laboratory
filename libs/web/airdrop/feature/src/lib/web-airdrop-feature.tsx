@@ -2,11 +2,11 @@ import { Text } from '@chakra-ui/react';
 import { WebAirdropUiCard } from '@kin-laboratory/web/airdrop/ui';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
-import { SimpleKeypair } from '@kin-sdk/client';
+import { Keypair } from '@kin-kinetic/keypair';
 import { useEffect, useState } from 'react';
 
 export function WebAirdropFeature() {
-  const [keypairs, setKeypairs] = useState<SimpleKeypair[] | []>([]);
+  const [keypairs, setKeypairs] = useState<Keypair[] | []>([]);
 
   useEffect(() => {
     const kps = sessionStorage.getItem('keyPairs') || '';
