@@ -14,11 +14,14 @@ export function WebAirdropUiCard({
   fixedPublicKey?: string;
   keypairs: Keypair[];
 }) {
-  const [amount, setAmount] = useState<string>('50000');
+  const [amount, setAmount] = useState<string>('1000');
+  console.log('🚀 ~ amount', amount);
   const [balance, setBalance] = useState<BalanceResponse | null>(null);
   const [balanceNull, setBalanceNull] = useState(false);
   const [publicKey, setPublicKey] = useState<string>(fixedPublicKey || '');
+  console.log('🚀 ~ publicKey', publicKey);
   const [dropping, setDropping] = useState<boolean>(false);
+  console.log('🚀 ~ dropping', dropping);
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
@@ -64,7 +67,7 @@ export function WebAirdropUiCard({
 
   const balancesButton = (
     <WebUiButton
-      disabled={!publicKey}
+      disabled={!publicKey || dropping}
       onClick={() =>
         publicKey && getBalance({ publicKey, setBalance, setBalanceNull })
       }
@@ -117,12 +120,14 @@ export function WebAirdropUiCard({
             <Field
               size="lg"
               min={1}
-              max={50000}
+              max={5000}
               type="number"
               name="name"
               label={fixedPublicKey ? 'Airdrop amount' : 'Amount'}
               value={amount}
-              onChange={(e: any) => setAmount(e.target?.value?.toString())}
+              onChange={(e: any) => {
+                setAmount(e);
+              }}
             />
           </FormLayout>
         </Form>

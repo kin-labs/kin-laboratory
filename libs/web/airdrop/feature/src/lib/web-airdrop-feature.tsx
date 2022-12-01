@@ -22,7 +22,7 @@ export function WebAirdropFeature() {
       subtitle={
         <Text>
           Once you have some Kin in your account, you can use it for testing
-          your Application. This only works on the Kin Test Net.
+          your Application. This only works on the Solana Devnet.
         </Text>
       }
     >

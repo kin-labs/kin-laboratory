@@ -23,9 +23,7 @@ export function KineticKeypairFeature() {
   function generate() {
     setKeypair(null);
     const mnemonic = Keypair.generateMnemonic();
-    console.log('🚀 ~ mnemonic', mnemonic);
     const kp = Keypair.fromSecret(mnemonic);
-    console.log('🚀 ~ kp', kp);
     addToSessionStorage(kp);
     setKeypair(kp);
   }

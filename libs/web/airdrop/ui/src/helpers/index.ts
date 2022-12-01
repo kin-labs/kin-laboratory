@@ -44,7 +44,6 @@ export async function getBalance({
       const balance = await kineticClient.getBalance({
           account: publicKey,
         });
-      console.log("🚀 ~ balance", balance)
       if (balance) setBalance(balance);
     } else {
       throw new Error('')
@@ -69,8 +68,7 @@ export async function createAccount({
   setBalance,
   setBalanceNull,
 }: CreateAccount) {
-  console.log("🚀 ~ publicKey", publicKey)
-  console.log("🚀 ~ keypairs", keypairs)
+
   if (publicKey) {
     setDropping(true);
     setError('');
@@ -79,15 +77,15 @@ export async function createAccount({
       const keypair =
       keypairs?.length &&
       keypairs.find((kp: Keypair) => kp.publicKey === publicKey);
-      console.log("🚀 ~ keypair", keypair)
+
       if (kineticClient && keypair && keypair.mnemonic) {
         const owner = Keypair.fromMnemonic(keypair.mnemonic)
         const account = await kineticClient.createAccount({
-        owner,
-        commitment: Commitment.Finalized,
-      });
-        console.log("🚀 ~ account", account)
+          owner,
+          commitment: Commitment.Finalized,
+        });
 
+        console.log("🚀 ~ account", account)
       } else {
         throw new Error("Can't find keypair");
       }
@@ -97,6 +95,7 @@ export async function createAccount({
       setError('Sorry, something went wrong. Please try again later...');
       console.error(`An error occurred`, err);
     }
+    await getBalance({ setBalance, setBalanceNull, publicKey });
     setDropping(false);
   }
 }
@@ -128,30 +127,6 @@ export async function airdrop({
         commitment: Commitment.Finalized,
       });
       console.log("🚀 ~ airdrop", airdrop)
-
-      // if (err === 'NOT_FOUND') {
-      //   const [balances] = await kineticClient.getBalance(publicKey);
-      //   const keypair =
-      //     keypairs?.length &&
-      //     keypairs.find((kp: Keypair) => kp.publicKey === publicKey);
-
-      //   if (balances?.length > 0) {
-      //     const tokenAccount = balances[0].account || '';
-      //     if (typeof tokenAccount === 'string' && tokenAccount.length > 0) {
-      //       const [__, _err] = await kineticClient.requestAirdrop(tokenAccount, amount);
-      //       if (_err) throw new Error('');
-      //     }
-      //   } else if (keypair && keypair.secret) {
-      //     await kineticClient.createAccount(keypair.secret);
-
-      //     setDropping(true);
-      //     const [___, __err] = await kineticClient.requestAirdrop(publicKey, amount);
-
-      //     if (__err) throw new Error('');
-      //   } else {
-      //     throw new Error('');
-      //   }
-      // }
 
       await getBalance({ setBalance, setBalanceNull, publicKey });
     } catch (err) {
