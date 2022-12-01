@@ -8,14 +8,14 @@ import { WebUiLayout, WebUiLinks } from '@kin-laboratory/web/ui/layout';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 const copyright = <p>Kin Foundation &copy; {new Date().getUTCFullYear()}</p>;
-const name = 'Kin Laboratory';
+const name = 'Laboratory';
 const links: WebUiLinks = [
   { label: 'Home', path: '/home' },
   { label: 'Keypair', path: '/keypair' },
   { label: 'Airdrop', path: '/airdrop' },
   { label: 'Memo', path: '/memo' },
   { label: 'Transaction', path: '/transaction' },
-  { label: 'Fee calculator', path: 'calculator' },
+  { label: 'Fee Calculator', path: 'calculator' },
 ];
 
 export function WebShellFeature() {
