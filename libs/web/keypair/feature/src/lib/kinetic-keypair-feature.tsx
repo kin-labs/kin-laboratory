@@ -10,7 +10,7 @@ import { WebUiPage } from '@kin-laboratory/web/ui/page';
 import { Keypair, SimpleKeypair } from '@kin-sdk/client';
 import { useEffect, useState } from 'react';
 
-export function WebKeypairFeature() {
+export function KineticKeypairFeature() {
   const [keyPair, setKeyPair] = useState<SimpleKeypair | null>();
 
   function addToSessionStorage(kp: SimpleKeypair) {
@@ -65,52 +65,6 @@ export function WebKeypairFeature() {
             </Box>
           ))}
         </Stack>
-      </WebUiPage>
-      <WebUiPage
-        title="Convert Stellar Seed to Solana"
-        subtitle={
-          <Stack spacing={6}>
-            <p>
-              For users with a Stellar generated private key that you'd like to
-              convert to work with other wallets on Solana.
-            </p>
-            <p>
-              You will be able to import the generated <code>secretKey</code>{' '}
-              into{' '}
-              <a href="https://phantom.app" target="_blank" rel="noreferrer">
-                Phantom
-              </a>
-              . Other Solana apps might require the secret key formatted in a{' '}
-              <code>byteArray</code>.
-            </p>
-            <p>Make sure to keep your Private Keys safe!</p>
-          </Stack>
-        }
-      >
-        <WebUiCard>
-          <WebKeypairUiConversionCard />
-        </WebUiCard>
-      </WebUiPage>
-      <WebUiPage
-        title="Convert Trust Wallet Stellar Kin to Solana"
-        subtitle={
-          <Stack spacing={6}>
-            <p>
-              For Trust Wallet users who want to move their Kin from a legacy
-              Stellar account to a Solana account.
-            </p>
-            <p>Input your Trust Wallet mnemonic to complete the conversion.</p>
-            <p>
-              You can use the generated private key to create a new Solana
-              wallet on Trust Wallet containing your Kin.
-            </p>
-            <p>Make sure to keep your Private Keys safe!</p>
-          </Stack>
-        }
-      >
-        <WebUiCard>
-          <WebKeypairUiConversionTrustWalletCard />
-        </WebUiCard>
       </WebUiPage>
     </Stack>
   );

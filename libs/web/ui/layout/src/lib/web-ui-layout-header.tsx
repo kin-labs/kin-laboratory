@@ -83,7 +83,7 @@ export function WebUiLayoutHeader({
 
             <Flex
               display={{ base: 'none', md: 'flex' }}
-              margin="auto 0 auto auto"
+              style={{ margin: 'auto 0 auto auto' }}
             >
               <WebUiHeaderLinks links={links} />
             </Flex>
