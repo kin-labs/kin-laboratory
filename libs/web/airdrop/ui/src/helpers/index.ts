@@ -152,7 +152,7 @@ interface OpenExplorer {
 }
 export async function openExplorer({ publicKey }: OpenExplorer) {
 
-  const url = await getExplorerUrl(publicKey)
+  const url = `https://explorer.solana.com/address/${publicKey}?cluster=devnet`
 
   if(url) window.open(url, '_blank');
 

@@ -5,6 +5,7 @@ export interface WebUiButtonProps {
   disabled?: boolean;
   onClick: (params?: unknown) => void;
   size?: string;
+  style?: any;
 }
 
 export function WebUiButton({
@@ -12,9 +13,11 @@ export function WebUiButton({
   label,
   onClick,
   size,
+  style,
 }: WebUiButtonProps) {
   return (
     <Button
+      style={style}
       size={size}
       disabled={disabled}
       onClick={onClick}

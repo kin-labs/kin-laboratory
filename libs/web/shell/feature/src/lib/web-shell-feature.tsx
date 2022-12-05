@@ -11,8 +11,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 const copyright = <p>Kin Foundation &copy; {new Date().getUTCFullYear()}</p>;
 const name = 'Laboratory';
 const links: WebUiLinks = [
-  { label: 'Home', path: '/home' },
-  { label: 'Keypair', path: '/keypair' },
+  { label: 'Keypairs', path: '/keypairs' },
   { label: 'Airdrop', path: '/airdrop' },
   { label: 'Memo', path: '/memo' },
   { label: 'Transaction', path: '/transaction' },
@@ -25,13 +24,14 @@ export function WebShellFeature() {
     <WebUiLayout name={name} copyright={copyright} links={links}>
       <Routes>
         <Route index element={<Navigate to="/home" />} />
-        <Route path="/airdrop" element={<WebAirdropFeature />} />
-        <Route path="/calculator" element={<WebCalculatorFeature />} />
         <Route path="/home" element={<WebHomeFeature />} />
-        <Route path="/keypair" element={<KineticKeypairFeature />} />
-        <Route path="/legacy" element={<WebKeypairFeature />} />
+        <Route path="/keypairs" element={<KineticKeypairFeature />} />
+        <Route path="/airdrop" element={<WebAirdropFeature />} />
         <Route path="/memo" element={<WebMemoFeature />} />
         <Route path="/transaction" element={<WebTransactionFeature />} />
+        <Route path="/calculator" element={<WebCalculatorFeature />} />
+        <Route path="/legacy" element={<WebKeypairFeature />} />
+        <Route path="/keypair" element={<Navigate to="/legacy" />} />
       </Routes>
     </WebUiLayout>
   );
