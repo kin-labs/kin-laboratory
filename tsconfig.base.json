@@ -32,6 +32,10 @@
       "@kin-laboratory/web/home/feature": [
         "libs/web/home/feature/src/index.ts"
       ],
+      "@kin-laboratory/web/legacy/feature": [
+        "libs/web/legacy/feature/src/index.ts"
+      ],
+      "@kin-laboratory/web/legacy/ui": ["libs/web/legacy/ui/src/index.ts"],
       "@kin-laboratory/web/keypair/feature": [
         "libs/web/keypair/feature/src/index.ts"
       ],

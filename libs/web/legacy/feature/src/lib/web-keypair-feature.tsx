@@ -3,7 +3,7 @@ import {
   WebKeypairUiCard,
   WebKeypairUiConversionCard,
   WebKeypairUiConversionTrustWalletCard,
-} from '@kin-laboratory/web/keypair/ui';
+} from '@kin-laboratory/web/legacy/ui';
 import { WebUiButton } from '@kin-laboratory/web/ui/button';
 import { WebUiCard } from '@kin-laboratory/web/ui/card';
 import { WebUiPage } from '@kin-laboratory/web/ui/page';
@@ -14,12 +14,12 @@ export function WebKeypairFeature() {
   const [keyPair, setKeyPair] = useState<SimpleKeypair | null>();
 
   function addToSessionStorage(kp: SimpleKeypair) {
-    const kpsString = sessionStorage.getItem('keyPairs') || '';
+    const kpsString = sessionStorage.getItem('stellarKeypairs') || '';
 
     let kps: SimpleKeypair[] = kpsString ? JSON.parse(kpsString) : [];
     kps = [kp, ...kps];
 
-    sessionStorage.setItem('keyPairs', JSON.stringify(kps));
+    sessionStorage.setItem('stellarKeypairs', JSON.stringify(kps));
   }
 
   function generate() {
@@ -31,7 +31,7 @@ export function WebKeypairFeature() {
 
   const [keypairs, setKeypairs] = useState<SimpleKeypair[] | null>(null);
   useEffect(() => {
-    const kps = sessionStorage.getItem('keyPairs') || '';
+    const kps = sessionStorage.getItem('stellarKeypairs') || '';
 
     if (kps.length) {
       setKeypairs(JSON.parse(kps));
@@ -45,11 +45,9 @@ export function WebKeypairFeature() {
         subtitle={
           <Stack>
             <Text>
-              These keypairs can be used on the Kin network where one is
-              required. For example, it can be used as an account master key or
-              to sign transactions for accounts.
+              These keypairs are legacy Stellar keypairs and shouldn't be used
+              with Kinetic SDKs.
             </Text>
-            <Text>Make sure to keep your Private Keys safe!</Text>
           </Stack>
         }
       >

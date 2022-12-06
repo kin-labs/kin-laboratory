@@ -26,12 +26,6 @@ const networks = [
     url: clusterApiUrl('devnet'),
     mint: 'KinDesK3dYWo3R2wDk6Ucaf31tvQCCSYyL8Fuqp33GX',
   },
-  { name: 'Testnet', url: clusterApiUrl('testnet') },
-  {
-    name: 'KIN Testnet',
-    url: 'https://local.validator.agorainfra.dev',
-    mint: 'kinTese33ph6r6txhC5RbftBGzmi68MPaT9ByhXqPbo',
-  },
 ];
 
 export function WebTransactionFeature() {
@@ -82,7 +76,14 @@ export function WebTransactionFeature() {
       <ButtonGroup>
         {networks.map((item) => (
           <WebUiButton
-            disabled={item === network}
+            style={
+              item === network
+                ? {
+                    borderColor: 'green',
+                    pointerEvents: 'none',
+                  }
+                : null
+            }
             label={item.name}
             key={item.name}
             onClick={() => setNetwork(item)}

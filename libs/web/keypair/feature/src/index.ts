@@ -1,1 +1,1 @@
-export * from './lib/web-keypair-feature';
+export * from './lib/kinetic-keypair-feature';

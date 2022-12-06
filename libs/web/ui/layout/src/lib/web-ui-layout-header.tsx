@@ -67,10 +67,24 @@ export function WebUiLayoutHeader({
                 size="sm"
               />
             </RouterLink>
-            <Heading size="md" display={{ base: 'none', md: 'block' }}>
+
+            <Heading
+              size="xs"
+              fontWeight="light"
+              color="gray"
+              border="1px solid gray"
+              borderRadius="5px"
+              padding="3px 6px"
+              style={{ margin: 'auto 30px auto 2px' }}
+              display={{ base: 'none', md: 'block' }}
+            >
               <RouterLink to="/">{name}</RouterLink>
             </Heading>
-            <Flex display={{ base: 'none', md: 'flex' }}>
+
+            <Flex
+              display={{ base: 'none', md: 'flex' }}
+              style={{ margin: 'auto 0 auto auto' }}
+            >
               <WebUiHeaderLinks links={links} />
             </Flex>
           </Stack>
@@ -81,6 +95,8 @@ export function WebUiLayoutHeader({
           justify={'flex-end'}
           direction={'row'}
           spacing={{ base: 2, md: 6 }}
+          borderLeft={{ base: 'none', md: '1px solid gray' }}
+          marginLeft="10px"
         >
           <WebUiLayoutThemeToggle />
         </Stack>
