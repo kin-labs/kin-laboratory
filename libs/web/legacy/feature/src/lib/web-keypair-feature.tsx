@@ -48,12 +48,6 @@ export function WebKeypairFeature() {
               These keypairs are legacy Stellar keypairs and shouldn't be used
               with Kinetic SDKs.
             </Text>
-            <Text>
-              These keypairs can be used on the Kin network where one is
-              required. For example, it can be used as an account master key or
-              to sign transactions for accounts.
-            </Text>
-            <Text>Make sure to keep your Private Keys safe!</Text>
           </Stack>
         }
       >

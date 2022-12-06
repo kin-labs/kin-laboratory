@@ -95,7 +95,7 @@ export function WebUiLayoutHeader({
           justify={'flex-end'}
           direction={'row'}
           spacing={{ base: 2, md: 6 }}
-          borderLeft="1px solid gray"
+          borderLeft={{ base: 'none', md: '1px solid gray' }}
           marginLeft="10px"
         >
           <WebUiLayoutThemeToggle />
