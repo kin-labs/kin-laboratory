@@ -21,7 +21,7 @@ export function WebKeypairUiCard({ kp }: { kp: Keypair }) {
       </Code>
       <ButtonGroup>
         <WebUiButton
-          label={'Show Secret Key / Byte Array?'}
+          label={`${showSecrets ? 'Hide' : 'Show'} Secret Key / Byte Array?`}
           onClick={() => setShowSecrets(!showSecrets)}
         />
       </ButtonGroup>
